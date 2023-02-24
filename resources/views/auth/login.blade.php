@@ -34,10 +34,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('admin/') }}/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
-  {{-- Toastr --}}
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-  {{-- Jquery --}}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 
 <body class="bg-gray-200">
@@ -210,45 +206,6 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('admin/') }}/assets/js/material-dashboard.min.js?v=3.0.0"></script>
-  {{-- Toastr js --}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-  <script>
-    @if(Session::has('message'))
-    toastr.options =
-    {
-      "closeButton" : true,
-      "progressBar" : true
-    }
-        toastr.success("{{ session('message') }}");
-    @endif
-  
-    @if(Session::has('error'))
-    toastr.options =
-    {
-      "closeButton" : true,
-      "progressBar" : true
-    }
-        toastr.error("{{ session('error') }}");
-    @endif
-  
-    @if(Session::has('info'))
-    toastr.options =
-    {
-      "closeButton" : true,
-      "progressBar" : true
-    }
-        toastr.info("{{ session('info') }}");
-    @endif
-  
-    @if(Session::has('warning'))
-    toastr.options =
-    {
-      "closeButton" : true,
-      "progressBar" : true
-    }
-        toastr.warning("{{ session('warning') }}");
-    @endif
-  </script>
 </body>
 
 </html>

@@ -32,10 +32,14 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/logout', 'destroy')->name('admin.logout');
     Route::get('/admin/profile', 'profile')->name('admin.profile');
     Route::get('/admin/profile/edit', 'editProfile')->name('admin.edit');
+<<<<<<< HEAD
     Route::post('/admin/profile/store', 'storeProfile')->name('store.profile');
     Route::get('/admin/profile/change-password', 'changePasswordProfile')->name('change.password');
     Route::post('/admin/profile/update-password-profile', 'updatePasswordProfile')->name('password.profile');
 
+=======
+    // Route::post('/orders', 'store');
+>>>>>>> parent of 5991962 (notification with toastr)
 });
 
 
