@@ -49,7 +49,6 @@ class AdminController extends Controller
         return view('admin.admin-edit-profile', compact('admin'));
 
     }
-<<<<<<< HEAD
 
     public function storeProfile(Request $request)
     {
@@ -123,6 +122,4 @@ class AdminController extends Controller
             return redirect()->back();
         }
     }
-=======
->>>>>>> parent of 5991962 (notification with toastr)
 }
