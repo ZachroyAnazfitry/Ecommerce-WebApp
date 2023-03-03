@@ -10,7 +10,7 @@
                 <img src="{{ asset('admin/') }}/assets/img/marie.jpg" class="rounded-circle avatar-x1 card-img-top" alt="...">
             </center>
            <div class="row">
-              <form action="#" method="POST">
+              <form action="{{ route('store.profile') }}" method="POST">
                 @csrf
                 <div class="mb-3 mt-3">
                   <label for="exampleFormControlInput1" class="form-label">Name</label>
