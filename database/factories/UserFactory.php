@@ -19,9 +19,16 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'username' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            // added for seeder new fields
+            'phone' => fake()->phoneNumber(),
+            'photo' => fake()->imageUrl('60','60'),
+            'address' => fake()->address(),
+            'role' => fake()->randomElement(['admin','vendor','user']),
+            'status' => fake()->randomElement(['active','inactive']),
             'remember_token' => Str::random(10),
         ];
     }

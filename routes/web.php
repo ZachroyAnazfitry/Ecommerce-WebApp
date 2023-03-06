@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('frontend.main');
+    // return view('frontend.main');
+    return view('welcome');
 });
 
 // Route::get('/dashboard', function () {
@@ -28,17 +30,30 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Admin routes only
-Route::controller(AdminController::class)->group(function () {
+// Route::controller(AdminController::class)->group(function () {
+//     Route::get('/admin/logout', 'destroy')->name('admin.logout');
+//     Route::get('/admin/profile', 'profile')->name('admin.profile');
+//     Route::get('/admin/profile/edit', 'editProfile')->name('admin.edit');
+//     Route::post('/admin/profile/store', 'storeProfile')->name('store.profile');
+//     Route::get('/admin/profile/change-password', 'changePasswordProfile')->name('change.password');
+//     Route::post('/admin/profile/update-password-profile', 'updatePasswordProfile')->name('password.profile');
+// });
+
+// create middleware route, check if logged in
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/logout', 'destroy')->name('admin.logout');
     Route::get('/admin/profile', 'profile')->name('admin.profile');
     Route::get('/admin/profile/edit', 'editProfile')->name('admin.edit');
     Route::post('/admin/profile/store', 'storeProfile')->name('store.profile');
     Route::get('/admin/profile/change-password', 'changePasswordProfile')->name('change.password');
     Route::post('/admin/profile/update-password-profile', 'updatePasswordProfile')->name('password.profile');
-
-    // Route::post('/orders', 'store');
+    
 });
 
+// Vendor routes
+Route::middleware(['auth', 'role:vendor'])->group(function () {
+    Route::get('/vendor/dashboard', [VendorController::class])->name('vendorDashboard');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
