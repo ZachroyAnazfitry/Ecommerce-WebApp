@@ -25,6 +25,11 @@ class AdminController extends Controller
         return redirect('/login')->with('message', "You've succesfully logout");
     }
 
+    public function adminDashboard()
+    {
+        return view('admin.index');
+    }
+
     // for user profile setting
     public function profile()
     {
