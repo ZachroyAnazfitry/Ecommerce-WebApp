@@ -5,15 +5,17 @@
 
 <div class="container">
 
-    {{-- @if ($message = Session::get('success'))
-        <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>	
-                <strong>{{ $message }}</strong>
+   {{-- <div>
+    @if ($message = Session::get('success'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{ $message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    @endif --}}
+    @endif
+   </div> --}}
     {{-- Add brands --}}
     <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Add New Brands
   </button>
   
@@ -27,16 +29,16 @@
         </div>
         <div class="modal-body">
             <div class="row">
-                <form action="{{ route('brands.new') }}" method="POST">
+                <form action="{{ route('brands.new') }}" method="POST" id="commentForm">
                   @csrf
                   <div class="mb-3 mt-3">
                     <label for="exampleFormControlInput1" class="form-label">Brand Name</label>
-                    <input type="text" class="form-control text-center" id="exampleFormControlInput1" style="border: 2px solid black" name="brand_name">
+                    <input type="text" class="form-control text-center" id="exampleFormControlInput1" style="border: 2px solid black" name="brand_name" required>
                   </div>
                   {{-- username --}}
                   <div class="mb-3 mt-3">
                     <label for="exampleFormControlInput1" class="form-label">Brand Image</label>
-                    <input type="file" class="form-control text-center" id="exampleFormControlInput1" style="border: 2px solid black" name="brand_image">
+                    <input type="file" class="form-control text-center" id="exampleFormControlInput1" style="border: 2px solid black" name="brand_image" required>
                   </div>
                   {{-- email --}}
                   {{-- <div class="mb-3 mt-3">
@@ -114,5 +116,31 @@
         </div>
     </div>
 </div>
+
+
+{{-- <script>
+    $("#commentForm").validate();
+</script> --}}
+
+<script>
+    $("#commentForm").validate({
+  rules: {
+    brand_name: "required",
+    brand_image: "required",
+    email: {
+      required: true,
+      email: true
+    }
+  },
+  messages: {
+    brand_name: "The brand name is needed!",
+    brand_image: "Please insert an image!",
+    email: {
+      required: "We need your email address to contact you",
+      email: "Your email address must be in the format of name@domain.com"
+    }
+  }
+});
+</script>
 
 @endsection

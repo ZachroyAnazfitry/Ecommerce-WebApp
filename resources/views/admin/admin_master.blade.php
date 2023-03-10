@@ -34,7 +34,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('admin/') }}/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
-
+  
   {{-- toastr --}}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -49,6 +49,9 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet"/>
 
   <script src="https://cdn.datatables.net/v/dt/dt-1.13.3/datatables.min.js"></script>
+
+  {{-- jquery validation --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -415,7 +418,9 @@
       "closeButton" : true,
       "progressBar" : true
     }
+        // toastr.options.positionClass = 'toast-bottom-right';
         toastr.success("{{ session('message') }}");
+
     @endif
   
     @if(Session::has('error'))
