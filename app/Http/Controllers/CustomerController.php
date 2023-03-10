@@ -12,7 +12,7 @@ class CustomerController extends Controller
 
     public function customerPage()
     {
-        return view('frontend.main');
+        return view('homepage.main');
     }
 
     public function destroy(Request $request): RedirectResponse
@@ -23,11 +23,11 @@ class CustomerController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('')->with('message', "You've succesfully logout");
+        return redirect('/')->with('message', "You've succesfully logout");
     }
 
     public function customerRegister()
     {
-        return view('frontend.customer-register');
+        return view('homepage.customer-register');
     }
 }

@@ -88,7 +88,7 @@
                               </p>
                               <p class="mt-4 text-sm text-center">
                                 Don't have an account?
-                                <a href="{{ route('customer.register') }}" class="text-primary text-gradient font-weight-bold">Sign up</a>
+                                <a href="" class="text-primary text-gradient font-weight-bold">Sign up</a>
                               </p>
                             </form>
                         

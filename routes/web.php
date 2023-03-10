@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('frontend.main');
+    return view('homepage.main');
     // return view('welcome');
 });
 
@@ -55,7 +55,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 // Vendor routes
 Route::middleware(['auth', 'role:vendor'])->group(function () {
     Route::get('/vendor/dashboard', [VendorController::class, 'vendorDashboard'])->name('vendor.dashboard');
-    Route::get('/admin/logout',[AdminController::class, 'destroy'])->name('admin.logout');
+    // Route::get('/admin/logout',[AdminController::class, 'destroy'])->name('admin.logout');
     // Route::get('/admin/logout',[VendorController::class, 'destroy'])->name('vendor.logout');
     // Route::get('/vendor/profile', [VendorController::class])->name('vendor.profile');
     // Route::get('/vendor/profile/edit', [VendorController::class])->name('vendor.edit');
@@ -68,7 +68,7 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 // Customer routes
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/customer/page', [CustomerController::class, 'customerPage'])->name('customer.page');
-    Route::get('/admin/logout',[AdminController::class, 'destroy'])->name('admin.logout');
+    Route::get('/customer/logout',[CustomerController::class, 'destroy'])->name('customer.logout');
 
     // Route::get('/admin/logout',[VendorController::class, 'destroy'])->name('vendor.logout');
     // Route::get('/vendor/profile', [VendorController::class])->name('vendor.profile');
