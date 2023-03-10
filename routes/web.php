@@ -43,7 +43,7 @@ Route::get('/dashboard', function () {
 // create middleware route, check if logged in
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard',[AdminController::class, 'adminDashboard'])->name('admin.dashboard');
-    // Route::get('/admin/logout',[AdminController::class, 'destroy'])->name('admin.logout');
+    Route::get('/admin/logout',[AdminController::class, 'destroy'])->name('admin.logout');
     Route::get('/admin/profile', [AdminController::class,'profile'])->name('admin.profile');
     Route::get('/admin/profile/edit', [AdminController::class, 'editProfile'])->name('admin.edit');
     Route::post('/admin/profile/store', [AdminController::class,'storeProfile'])->name('store.profile');
@@ -70,6 +70,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/customer/home', [CustomerController::class, 'customerPage'])->name('customer.home');
     Route::get('/customer/logout',[CustomerController::class, 'destroy'])->name('customer.logout');
     Route::get('/customer/profile',[CustomerController::class, 'customerProfile'])->name('customer.profile');
+    Route::post('/customer/profile/edit',[CustomerController::class, 'customerEditProfile'])->name('customer.edit');
     
 
    
