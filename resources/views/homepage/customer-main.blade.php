@@ -1,7 +1,11 @@
+@extends('homepage.main')
+
+
+@section('content')
 
 
 <!-- Start Banner Hero -->
- <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+<div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
     <ol class="carousel-indicators">
         <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
         <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
@@ -199,3 +203,5 @@
         </div>
     </div>
 </section>
+    
+@endsection

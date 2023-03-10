@@ -16,6 +16,13 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="{{ asset('frontend/') }}/assets/css/fontawesome.min.css">
+
+    {{-- toastr --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <!--
     
 TemplateMo 559 Zay Shop
@@ -64,7 +71,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
+                            <a class="nav-link" href="{{ route('customer.home') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About</a>
@@ -93,60 +100,10 @@ https://templatemo.com/tm-559-zay-shop
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="{{ route('login') }}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <a class="nav-icon position-relative text-decoration-none" href="{{ route('customer.profile') }}">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                        {{-- <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span> --}}
                     </a>
-                    <!-- Button trigger modal -->
-                    {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Launch demo modal
-                    </button> --}}
-                    
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Customer Login</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form method="POST" role="form" class="text-start" action="{{ route('login') }}">
-                                    @csrf
-                                  <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username" required autofocus autocomplete="username" >
-                                  </div>
-                                  <div class="input-group input-group-outline mb-3">
-                                    <label class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password"
-                                    required >
-                                  </div>
-                                  <div class="form-check form-switch d-flex align-items-center mb-3">
-                                    <input class="form-check-input" type="checkbox" id="rememberMe" name="remember">
-                                    <label class="form-check-label mb-0 ms-2" for="rememberMe">Remember me</label>
-                                  </div>
-                                  <div class="text-center">
-                                    <button type="submit" class="btn btn-success w-100 my-4 mb-2">Sign in</button>
-                                  </div>
-                                  <p class="mt-4 text-sm text-center">
-                                    Forgot your password?
-                                    <a href="{{ route('password.request') }}" class="text-primary text-gradient font-weight-bold">Reset password</a>
-                                  </p>
-                                  <p class="mt-4 text-sm text-center">
-                                    Don't have an account?
-                                    <a href="{{ route('customer.register') }}" class="text-primary text-gradient font-weight-bold">Sign up</a>
-                                  </p>
-                                </form>
-                            
-                            </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-                            {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-                            </div>
-                        </div>
-                        </div>
-                    </div>
                     <a href="{{ route('customer.logout') }}" class="nav-link text-body font-weight-bold px-0">
                         <i class=" me-sm-1"></i>
                         <span class="d-sm-inline d-none">Logout</span>
@@ -176,9 +133,9 @@ https://templatemo.com/tm-559-zay-shop
     
    <main>
 
-    @include('homepage.body.content')
+    {{-- @include('homepage.body.content') --}}
 
-    {{-- @yield('main') --}}
+    @yield('content')
     
    </main>
 
@@ -287,6 +244,45 @@ https://templatemo.com/tm-559-zay-shop
     <script src="{{ asset('frontend/') }}/assets/js/templatemo.js"></script>
     <script src="{{ asset('frontend/') }}/assets/js/custom.js"></script>
     <!-- End Script -->
+
+    {{-- toastr --}}
+  <script>
+    @if(Session::has('message'))
+    toastr.options =
+    {
+      "closeButton" : true,
+      "progressBar" : true
+    }
+        toastr.success("{{ session('message') }}");
+    @endif
+  
+    @if(Session::has('error'))
+    toastr.options =
+    {
+      "closeButton" : true,
+      "progressBar" : true
+    }
+        toastr.error("{{ session('error') }}");
+    @endif
+  
+    @if(Session::has('info'))
+    toastr.options =
+    {
+      "closeButton" : true,
+      "progressBar" : true
+    }
+        toastr.info("{{ session('info') }}");
+    @endif
+  
+    @if(Session::has('warning'))
+    toastr.options =
+    {
+      "closeButton" : true,
+      "progressBar" : true
+    }
+        toastr.warning("{{ session('warning') }}");
+    @endif
+  </script>
 </body>
 
 </html>

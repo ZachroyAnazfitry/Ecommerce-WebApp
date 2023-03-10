@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('homepage.main');
+    return view('landing-page');
     // return view('welcome');
 });
 
@@ -43,7 +43,7 @@ Route::get('/dashboard', function () {
 // create middleware route, check if logged in
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard',[AdminController::class, 'adminDashboard'])->name('admin.dashboard');
-    Route::get('/admin/logout',[AdminController::class, 'destroy'])->name('admin.logout');
+    // Route::get('/admin/logout',[AdminController::class, 'destroy'])->name('admin.logout');
     Route::get('/admin/profile', [AdminController::class,'profile'])->name('admin.profile');
     Route::get('/admin/profile/edit', [AdminController::class, 'editProfile'])->name('admin.edit');
     Route::post('/admin/profile/store', [AdminController::class,'storeProfile'])->name('store.profile');
@@ -67,15 +67,12 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 
 // Customer routes
 Route::middleware(['auth', 'role:user'])->group(function () {
-    Route::get('/customer/page', [CustomerController::class, 'customerPage'])->name('customer.page');
+    Route::get('/customer/home', [CustomerController::class, 'customerPage'])->name('customer.home');
     Route::get('/customer/logout',[CustomerController::class, 'destroy'])->name('customer.logout');
+    Route::get('/customer/profile',[CustomerController::class, 'customerProfile'])->name('customer.profile');
+    
 
-    // Route::get('/admin/logout',[VendorController::class, 'destroy'])->name('vendor.logout');
-    // Route::get('/vendor/profile', [VendorController::class])->name('vendor.profile');
-    // Route::get('/vendor/profile/edit', [VendorController::class])->name('vendor.edit');
-    // Route::post('/vendor/profile/store', [VendorController::class])->name('store.profile');
-    // Route::get('/vendor/profile/change-password',[VendorController::class])->name('change.password');
-    // Route::post('/vendor/profile/update-password-profile', [VendorController::class])->name('password.profile');
+   
 
 });
 
