@@ -4,6 +4,13 @@
 <h1>Brands</h1>
 
 <div class="container">
+
+    {{-- @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>	
+                <strong>{{ $message }}</strong>
+        </div>
+    @endif --}}
     {{-- Add brands --}}
     <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -38,14 +45,15 @@
                   </div> --}}
   
                   {{-- <button type="submit" class="btn btn-success">Add this Brand</button> --}}
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Save changes</button>
+                  </div>
                 </form>
             
               </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-success">Save changes</button>
-        </div>
+       
       </div>
     </div>
   </div>
