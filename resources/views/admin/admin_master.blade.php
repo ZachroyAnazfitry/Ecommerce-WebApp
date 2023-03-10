@@ -41,6 +41,14 @@
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 	
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+  {{-- datatable --}}
+  
+  <link href="https://cdn.datatables.net/v/dt/dt-1.13.3/datatables.min.css" rel="stylesheet"/>
+  <link href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <script src="https://cdn.datatables.net/v/dt/dt-1.13.3/datatables.min.js"></script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -436,6 +444,13 @@
     }
         toastr.warning("{{ session('warning') }}");
     @endif
+  </script>
+
+  {{-- datatable jquery --}}
+  <script>
+    $(document).ready(function () {
+    $('#dataTable').DataTable();
+  });
   </script>
 </body>
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/profile/store', [AdminController::class,'storeProfile'])->name('store.profile');
     Route::get('/admin/profile/change-password',[AdminController::class,'changePasswordProfile'])->name('change.password');
     Route::post('/admin/profile/update-password-profile', [AdminController::class, 'updatePasswordProfile'])->name('password.profile');
+
+    // Brand - calling BrandController once
+    Route::controller(BrandController::class)->group(function () {
+        Route::get('/brands', 'brands')->name('brands');
+        Route::post('/brands/new', 'storeNewBrands')->name('brands.new');
+    });
+
     
 });
 
@@ -70,7 +78,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/customer/home', [CustomerController::class, 'customerPage'])->name('customer.home');
     Route::get('/customer/logout',[CustomerController::class, 'destroy'])->name('customer.logout');
     Route::get('/customer/profile',[CustomerController::class, 'customerProfile'])->name('customer.profile');
-    Route::post('/customer/profile/edit',[CustomerController::class, 'customerEditProfile'])->name('customer.edit');
+    Route::put('/customer/profile/edit',[CustomerController::class, 'customerEditProfile'])->name('customer.edit');
     
 
    
