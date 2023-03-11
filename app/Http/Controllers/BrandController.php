@@ -6,6 +6,7 @@ use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BrandController extends Controller
 {
@@ -29,19 +30,45 @@ class BrandController extends Controller
         // Image::make($image)->resize(300,300)->save('upload/brand/'.$image_generated);
         // $brand_image = 'upload/brand/'.$image_generated;
 
-        $brand = new Brand();
-        $brand->brand_name = $request->brand_name;
+        $brands = new Brand();
+        $brands->brand_name = $request->brand_name;
         // brand_slug to lowercase and replace with -
-        $brand->brand_slug = strtolower(str_replace(' ', '-', $request->brand_name));
+        $brands->brand_slug = strtolower(str_replace(' ', '-', $request->brand_name));
         // $brand->brand_image = $brand_image;
-        $brand->brand_image = $request->brand_image;
-        $brand->save();
+        $brands->brand_image = $request->brand_image;
+        $brands->save();
 
         // session flash
         session()->flash('success', 'Brands added!');
 
         return back();
         // return redirect()->route('admin.brand.index');
+    }
+
+    public function editNewBrands($id)
+    {
+        $brands = Brand::findOrFail($id);
+
+        return view('admin.brand', compact('brands'));
+    }
+
+    public function deleteNewBrands($id)
+    {
+    //    delete brand function
+        $brands = Brand::findOrFail($id);
+        $brands->delete();
+        // session flash, not suitable
+        session()->flash('success', 'Brands deleted!');
+
+        // use sweetalert popup box
+        // Alert::success('Brands deleted!');
+        // Alert::alert('Title', 'Message');
+
+
+
+        return back();
+        // return redirect()->route('admin.brand.index');
+
     }
 
     

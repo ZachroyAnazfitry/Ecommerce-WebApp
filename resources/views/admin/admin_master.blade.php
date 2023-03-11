@@ -43,7 +43,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
   {{-- datatable --}}
-  
   <link href="https://cdn.datatables.net/v/dt/dt-1.13.3/datatables.min.css" rel="stylesheet"/>
   <link href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet"/>
@@ -52,9 +51,12 @@
 
   {{-- jquery validation --}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
+  @include('sweetalert::alert')
   @include('admin.body.aside')
   
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -64,6 +66,7 @@
     <div class="container-fluid py-4">
 
         @yield('admin')
+
       
       {{-- footer --}}
       @include('admin.body.footer')
@@ -409,6 +412,7 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('admin/') }}/assets/js/material-dashboard.min.js?v=3.0.0"></script>
+  
 
   {{-- toastr --}}
   <script>
