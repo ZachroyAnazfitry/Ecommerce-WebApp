@@ -57,17 +57,14 @@ class BrandController extends Controller
     //    delete brand function
         $brands = Brand::findOrFail($id);
         $brands->delete();
-        // session flash, not suitable
+        // session flash
         session()->flash('success', 'Brands deleted!');
 
         // use sweetalert popup box
         // Alert::success('Brands deleted!');
         // Alert::alert('Title', 'Message');
 
-
-
         return back();
-        // return redirect()->route('admin.brand.index');
 
     }
 
