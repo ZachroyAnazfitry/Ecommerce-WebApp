@@ -34,7 +34,7 @@
                     <form action="{{ route('brands.edit', $brand->id) }}" method="POST" id="commentForm">
                         @method('PUT')
                 @else
-                    <form action="{{ route('brands.new') }}" method="POST" id="commentForm">
+                    <form action="{{ route('brands.new') }}" method="POST" id="commentForm" enctype="multipart/form-data">
                 @endif
                   @csrf
                   <h1>@if (isset($brand)) Edit @else Add @endif brands</h1>
@@ -46,7 +46,9 @@
                   {{-- username --}}
                   <div class="mb-3 mt-3">
                     <label for="exampleFormControlInput1" class="form-label">Brand Image</label>
-                    <input type="file" class="form-control text-center" id="exampleFormControlInput1" style="border: 2px solid black" name="brand_image" value="{{ old('brand_image', $brand->brand_image ?? '') }}" required>
+                    <input type="file" class="form-control text-center" id="photo" style="border: 2px solid black" name="brand_image" value="{{ old('brand_image', $brand->brand_image ?? '') }}" required>
+                    <img id="showPhoto" src="{{url('upload/admin-photo/blank.jpg')}}" class="rounded-circle avatar-x1 card-img-top" alt="..." style="width: 18rem">
+
                   </div>
                   {{-- email --}}
                   {{-- <div class="mb-3 mt-3">
@@ -86,7 +88,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $brand->brand_name }}</td>
-                            <td><img src="{{ asset($brand->brand_image) }}" alt="" style="width: 70px; height:40px"></td>
+                            <td><img src="{{ asset($brand->brand_image) }}" alt="" style="width: 70px; height:40px">{{$brand->brand_image}}</td>
                             <td>
                                 <a href="{{ route('brands.edit', $brand->id) }}" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal{{$loop->iteration}}">Edit</a>
                                 <!-- Modal -->
@@ -115,8 +117,9 @@
                                                     </div>
                                                     {{-- username --}}
                                                     <div class="mb-3 mt-3">
-                                                        <label for="exampleFormControlInput1" class="form-label">Brand Image</label>
-                                                        <input type="file" class="form-control text-center" id="exampleFormControlInput1" style="border: 2px solid black" name="brand_image" value="{{ old('brand_image', $brand->brand_image ?? '') }}" required>
+                                                        <label for="exampleFormControlInput1" class="form-label">Brand Imaged</label>
+                                                        <input type="file" class="form-control text-center" id="photo" style="border: 2px solid black" name="brand_image" value="{{ old('brand_image', $brand->brand_image ?? '') }}" required>
+
                                                     </div>
                                                     {{-- email --}}
                                                     {{-- <div class="mb-3 mt-3">

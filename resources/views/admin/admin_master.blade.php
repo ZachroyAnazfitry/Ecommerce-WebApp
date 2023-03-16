@@ -466,6 +466,20 @@
     $('#dataTable').DataTable();
   });
   </script>
+
+  {{-- jquery for uploading image --}}
+  <script>
+    $(document).ready(function(){
+      $('#photo').change(function(e){
+        var file = e.target.files['0'];
+        var reader = new FileReader();
+        reader.onload = function(e){
+          $('#showPhoto').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(file);
+      })
+    })
+  </script>
 </body>
 
 </html>

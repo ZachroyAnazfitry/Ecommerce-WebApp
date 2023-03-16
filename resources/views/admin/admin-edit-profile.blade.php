@@ -42,8 +42,10 @@
     </div>
 </div>
 
+{{-- move to admin_master blade --}}
 {{-- jquery for uploading image --}}
-<script>
+
+{{-- <script>
   $(document).ready(function(){
     $('#photo').change(function(e){
       var file = e.target.files['0'];
@@ -54,7 +56,6 @@
       reader.readAsDataURL(file);
     })
   })
-
-</script>
+</script> --}}
     
 @endsection
