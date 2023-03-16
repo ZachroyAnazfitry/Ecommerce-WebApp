@@ -67,15 +67,15 @@ class AdminController extends Controller
         $admin->email = $request->email;
 
         // for file type image
-        // if ($request->file('image')) {
-        //     $image = $request->file('image');
+        if ($request->file('photo')) {
+            $image = $request->file('photo');
 
-        //     change image name
-        //     $imageName = date(YMd).$file->getClientOriginalName();
-        //     move file
-        //     $imageName->move(public_path('upload/admin_images', $imageName));  #create new folder to store uploaded images
-        //     $admin['image'] = $imageName;
-        // }
+            // change image name
+            $imageName = date('YMdHi').$image->getClientOriginalName(); //generate date
+            // move file
+            $image->move(public_path('upload/admin-photo'), $imageName);  #create new folder to store uploaded images
+            $admin['photo'] = $imageName; //add new photo to db
+        }
 
         $admin->save();
 
