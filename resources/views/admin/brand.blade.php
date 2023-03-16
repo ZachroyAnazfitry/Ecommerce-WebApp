@@ -90,60 +90,10 @@
                             <td>{{ $brand->brand_name }}</td>
                             <td><img src="{{ asset($brand->brand_image) }}" alt="" style="width: 70px; height:40px">{{$brand->brand_image}}</td>
                             <td>
-                                <a href="{{ route('brands.edit', $brand->id) }}" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal{{$loop->iteration}}">Edit</a>
-                                <!-- Modal -->
-                                    <div class="modal fade" id="#editModal{{$loop->iteration}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Add New Brands</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    {{-- using same blade for store & edit --}}
-                                                    @if (isset($brand))
-                                                        <form action="{{ route('brands.edit', $brand->id) }}" method="POST" id="commentForm">
-                                                            @method('PUT')
-                                                    @else
-                                                        <form action="{{ route('brands.new') }}" method="POST" id="commentForm">
-                                                    @endif
-                                                    @csrf
-                                                    <h1>@if (isset($brand)) Edit @else Add @endif brands</h1>
-
-                                                    <div class="mb-3 mt-3">
-                                                        <label for="exampleFormControlInput1" class="form-label">Brand Name</label>
-                                                        <input type="text" class="form-control text-center" id="exampleFormControlInput1" style="border: 2px solid black" name="brand_name" value="{{ old('brand_name', $brand->brand_name ?? '') }}" required>
-                                                    </div>
-                                                    {{-- username --}}
-                                                    <div class="mb-3 mt-3">
-                                                        <label for="exampleFormControlInput1" class="form-label">Brand Imaged</label>
-                                                        <input type="file" class="form-control text-center" id="photo" style="border: 2px solid black" name="brand_image" value="{{ old('brand_image', $brand->brand_image ?? '') }}" required>
-
-                                                    </div>
-                                                    {{-- email --}}
-                                                    {{-- <div class="mb-3 mt-3">
-                                                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                                                        <input type="email" class="form-control text-center" id="exampleFormControlInput1" style="border: 2px solid black" name="email">
-                                                    </div> --}}
-                                    
-                                                    {{-- <button type="submit" class="btn btn-success">Add this Brand</button> --}}
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-success">Save changes</button>
-                                                    </div>
-                                                    </form>
-                                                
-                                                </div>
-                                            </div>
-                                        
-                                        </div>
-                                        </div>
-                                    </div>
+                                <a href="{{ route('brands.edit', $brand->id) }}" class="btn btn-info">Edit</a>
+                    
                                 <a href="{{ route('brands.delete', $brand->id) }}" class="btn btn-danger">Delete</a>
                             </td>
-
-                    
                         </tr>
                         
                     @endforeach

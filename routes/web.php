@@ -56,6 +56,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/brands', 'brands')->name('brands');
         Route::post('/brands/new', 'storeNewBrands')->name('brands.new');
         Route::get('/brands/edit/{id}', 'editNewBrands')->name('brands.edit');
+        Route::put('/brands/update/{id}', 'updateNewBrands')->name('brands.update');
         Route::get('/brands/delete/{id}', 'deleteNewBrands')->name('brands.delete');
     });
 

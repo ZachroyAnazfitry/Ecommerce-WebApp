@@ -49,7 +49,20 @@ class BrandController extends Controller
     {
         $brands = Brand::findOrFail($id);
 
-        return view('admin.brand', compact('brands'));
+        return view('admin.edit-brand', compact('brands'));
+    }
+
+    public function updateNewBrands(Request $request)
+    {
+        $brand_id = $request->id;
+
+        Brand::findOrFail($brand_id)->update([
+            'brand_name' => $request->brand_name,
+            'brand_image' => $request->brand_image,
+        ]);
+
+        session()->flash('success', 'Brands updated!');
+        return redirect('/brands');
     }
 
     public function deleteNewBrands($id)
