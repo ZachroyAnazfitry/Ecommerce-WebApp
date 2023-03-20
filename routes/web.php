@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
@@ -60,6 +61,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/brands/delete/{id}', 'deleteNewBrands')->name('brands.delete');
     });
 
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/category', 'showCategory')->name('category');
+        Route::get('/category/add', 'addCategory')->name('category.add');
+    });
     
 });
 
