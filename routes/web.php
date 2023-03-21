@@ -65,6 +65,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/category', 'showCategory')->name('category');
         Route::get('/category/add', 'addCategory')->name('category.add');
         Route::post('/category/store', 'storeCategory')->name('category.store');
+        Route::get('/category/edit/{id}', 'editCategory')->name('category.edit');
+        Route::put('/category/update/{id}', 'updateNewCategory')->name('category.update');
+        Route::get('/category/delete/{id}', 'deleteCategory')->name('category.delete');
+
+
+
     });
     
 });

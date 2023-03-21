@@ -36,14 +36,12 @@
                           <td>{{ $category->category_name }}</td>
                           <td><img src="{{ asset($category->category_image) }}" alt="" style="width: 70px; height:40px"></td>
                           <td>
-                              <a href="" class="btn btn-info">Edit</a>
+                              <a href="{{ route('category.edit', $category->id ) }}" class="btn btn-info">Edit</a>
                   
-                              <a href="" class="btn btn-danger">Delete</a>
+                              <a href="{{ route('category.delete', $category->id ) }}" class="btn btn-danger">Delete</a>
                           </td>
                       </tr>
-                      
-                  @endforeach
-                  
+                  @endforeach     
               </tbody>
           </table>
         </div> 

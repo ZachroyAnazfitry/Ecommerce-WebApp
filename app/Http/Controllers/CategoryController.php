@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class CategoryController extends Controller
@@ -42,8 +43,67 @@ class CategoryController extends Controller
         ]);
 
         // session flash
-        session()->flash('success', 'Brands added!');
+        session()->flash('success', 'Category added!');
 
         return redirect('category');
+    }
+
+    public function editCategory($id)
+    {
+        $editCategory = Category::find($id);
+        return view('admin.category.add-category', compact('editCategory'));
+    }
+    
+    public function updateNewCategory(Request $request)
+    {
+        $category_id = $request->id;
+        $old_img = $request->old_image;
+
+        if ($request->file('category_image')) {
+             $image = $request->file('category_image');
+             $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+             Image::make($image)->resize(300,300)->save('upload/category/'.$name_gen);
+             $save_url = 'upload/category/'.$name_gen;     
+             
+             if (file_exists($old_img)) {
+                unlink($old_img);
+             }
+     
+             Category::findOrFail($category_id)->update([
+                 'category_name' => $request->category_name,
+                 'category_slug' => strtolower(str_replace(' ', '-',$request->category_name)),
+                 'category_image' => $save_url, 
+             ]);
+
+            session()->flash('success', 'Brands updated!');
+            return redirect('category');
+
+        } else {
+            Category::findOrFail($category_id)->update([
+                'category_name' => $request->category_name,
+                'category_slug' => strtolower(str_replace(' ', '-',$request->category_name)), 
+            ]);
+
+            session()->flash('success', 'Category updated!');
+            return redirect('category');
+        }
+        
+    }
+
+    public function deleteCategory($id)
+    {
+    //    delete brand function
+        $brands = Category::findOrFail($id);
+        $brands->delete();
+
+        // session flash
+        session()->flash('success', 'Brands deleted!');
+
+        // use sweetalert popup box
+        // Alert::success('Brands deleted!');
+        // Alert::alert('Title', 'Message');
+
+        return back();
+
     }
 }
