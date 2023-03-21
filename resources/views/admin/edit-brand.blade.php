@@ -27,9 +27,8 @@
 
 
           
-
-                <button type="submit" class="btn btn-success">Update Brands</button>
                 <a href="{{ route('brands') }}"><button type="button" class="btn btn-info">Back</button>
+                <button type="submit" class="btn btn-success">Update Brands</button>
                 </a>
               </form>
           

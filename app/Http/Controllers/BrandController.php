@@ -75,15 +75,49 @@ class BrandController extends Controller
 
     public function updateNewBrands(Request $request)
     {
+        // for testing purposes
+        // $brand_id = $request->id;
+
+        // Brand::findOrFail($brand_id)->update([
+        //     'brand_name' => $request->brand_name,
+        //     'brand_image' => $request->brand_image,
+        // ]);
+
+        // session()->flash('success', 'Brands updated!');
+        // return redirect('/brands');
+
         $brand_id = $request->id;
+        $old_img = $request->old_image;
 
-        Brand::findOrFail($brand_id)->update([
-            'brand_name' => $request->brand_name,
-            'brand_image' => $request->brand_image,
-        ]);
+        if ($request->file('brand_image')) {
+             $image = $request->file('brand_image');
+             $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+             Image::make($image)->resize(300,300)->save('upload/brand/'.$name_gen);
+             $save_url = 'upload/brand/'.$name_gen;     
+             
+             if (file_exists($old_img)) {
+                unlink($old_img);
+             }
+     
+             Brand::findOrFail($brand_id)->update([
+                 'brand_name' => $request->brand_name,
+                 'brand_slug' => strtolower(str_replace(' ', '-',$request->brand_name)),
+                 'brand_image' => $save_url, 
+             ]);
 
-        session()->flash('success', 'Brands updated!');
-        return redirect('/brands');
+            session()->flash('success', 'Brands updated!');
+            return redirect('/brands');
+
+        } else {
+            Brand::findOrFail($brand_id)->update([
+                'brand_name' => $request->brand_name,
+                'brand_slug' => strtolower(str_replace(' ', '-',$request->brand_name)), 
+            ]);
+
+            session()->flash('success', 'Brands updated!');
+            return redirect('/brands');
+        }
+        
     }
 
     public function deleteNewBrands($id)
