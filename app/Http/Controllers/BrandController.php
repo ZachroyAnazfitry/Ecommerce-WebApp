@@ -17,6 +17,8 @@ class BrandController extends Controller
         // $brands = Brand::all();
         $brands = Brand::latest()->get();
 
+        // dd($brands);
+
         return view('admin.brand', compact('brands'));
     }
 
@@ -28,15 +30,34 @@ class BrandController extends Controller
         $image_generated = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
         // resize image by calling image intervention package
         Image::make($image)->resize(300,300)->save('upload/brand/'.$image_generated);
-        $brand_image = 'upload/brand/'.$image_generated;
+        $brand_image_url = 'upload/brand/'.$image_generated;
 
-        $brands = new Brand();
-        $brands->brand_name = $request->brand_name;
+        Brand::insert([
+            'brand_name' => $request->brand_name,
+            'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+            'brand_image' => $brand_image_url,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+
+        /**
+         * only able to download certain image extension - png file
+         * Example of error - Unsupported image type directory. GD driver is only able to decode JPG, PNG, GIF, BMP or WebP files.
+         */
+
+
+        /** 
+         * below code is not working
+         * probably due to undefined url image stored in DB
+         */
+
+        // $brands = new Brand();
+        // $brands->brand_name = $request->brand_name;
         // brand_slug to lowercase and replace empty space with hyphen(-)
-        $brands->brand_slug = strtolower(str_replace(' ', '-', $request->brand_name));
-        $brands->brand_image = $brand_image;
-        $brands->brand_image = $request->brand_image;
-        $brands->save();
+        // $brands->brand_slug = strtolower(str_replace(' ', '-', $request->brand_name));
+        // $brands->brand_image = $brand_image;
+        // $brands->brand_image = $request->brand_image;
+        // $brands->save();
 
         // session flash
         session()->flash('success', 'Brands added!');

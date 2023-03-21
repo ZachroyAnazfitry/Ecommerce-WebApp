@@ -88,7 +88,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $brand->brand_name }}</td>
-                            <td><img src="{{ asset($brand->brand_image) }}" alt="" style="width: 70px; height:40px">{{$brand->brand_image}}</td>
+                            <td><img src="{{ asset($brand->brand_image) }}" alt="" style="width: 70px; height:40px"></td>
                             <td>
                                 <a href="{{ route('brands.edit', $brand->id) }}" class="btn btn-info">Edit</a>
                     

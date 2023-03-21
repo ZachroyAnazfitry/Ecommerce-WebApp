@@ -5,20 +5,20 @@
           <div class="copyright text-center text-sm text-muted text-lg-start">
             © <script>
               document.write(new Date().getFullYear())
-            </script>,
-            made with <i class="fa fa-heart"></i> by
-            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-            for a better web.
+            </script>
+            {{-- ,made with <i class="fa fa-heart"></i> by --}}
+            {{-- <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
+            for a better web. --}}
           </div>
         </div>
         <div class="col-lg-3">
           <ul class="nav nav-footer justify-content-center justify-content-lg-end">
           <li class="nav-item">
-            <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Distributed By: ThemeWagon</a>
+            <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Developed By: Zachroy Anazfitry</a>
           </li>
         </ul>
         </div>
-        <div class="col-lg-3">
+        {{-- <div class="col-lg-3">
           <ul class="nav nav-footer justify-content-center justify-content-lg-end">
             <li class="nav-item">
               <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
@@ -33,7 +33,7 @@
               <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
             </li>
           </ul>
-        </div>
+        </div> --}}
       </div>
     </div>
   </footer>

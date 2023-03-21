@@ -21,7 +21,7 @@
                 <div class="mb-3 mt-3">
                   <label for="exampleFormControlInput1" class="form-label">Brand Image</label>
                   <input type="file" class="form-control text-center" id="photo" style="border: 2px solid black" name="brand_image" value="{{ old('brand_image', $brands->brand_image ?? '') }}" required>
-                  <img id="showPhoto" src="{{asset('$brands->brand_image ')}}" class="rounded-circle avatar-x1 card-img-top" alt="..." style="width: 18rem">
+                  <img id="showPhoto" src="{{ asset($brands->brand_image) }}" class="rounded-circle avatar-x1 card-img-top" alt="..." style="width: 18rem">
 
                 </div>
 
