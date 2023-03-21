@@ -2,9 +2,18 @@
 <html lang="en">
 
 <head>
-    <title>Zac Shop eCommerce</title>
+    <title>Let'z Shoppe</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+  <!-- Material Dashboard CSS -->
+  <link rel="stylesheet" href="assets/css/material-dashboard?v=2.1.2.css">
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
 
     <link rel="apple-touch-icon" href="{{ asset('frontend/') }}/assets/img/apple-icon.png">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/') }}/assets/img/favicon.ico">
@@ -116,46 +125,52 @@ https://templatemo.com/tm-559-zay-shop
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Customer Login</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Customer Login</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" role="form" class="text-start" action="{{ route('login') }}">
+                                        @csrf
+                                    <div class="input-group input-group-outline my-3">
+                                        <label class="form-label">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username" required autofocus autocomplete="username" >
+                                    </div>
+                                    <div class="input-group input-group-outline mb-3">
+                                        <label class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                        required >
+                                    </div>
+                                    <div class="form-check form-switch d-flex align-items-center mb-3">
+                                        <input class="form-check-input" type="checkbox" id="rememberMe" name="remember">
+                                        <label class="form-check-label mb-0 ms-2" for="rememberMe">Remember me</label>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success w-100 my-4 mb-2">Sign in</button>
+                                    </div>
+                                    <p class="mt-4 text-sm text-center">
+                                        Forgot your password?
+                                        <a href="{{ route('password.request') }}" class="text-primary text-gradient font-weight-bold">Reset password</a>
+                                    </p>
+                                    <p class="mt-4 text-sm text-center">
+                                        Don't have an account?
+                                        <a href="{{ route('customer.register') }}" class="text-primary text-gradient font-weight-bold">Sign up</a>
+                                    </p>
+                                    </form>
+                                
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                                </div>
+
+
+                                <a href="{{ route('vendor.login') }}"><button style="width: 40%; margin: 20px 0 20px 10px" type="button" class="btn btn-success">Are you a Vendor?</button></a>
+                                <a href="{{ route('login') }}"><button style="width: 40%; margin: 20px 0 20px 10px;" style="align-content: right" type="button" class="btn btn-info">Are you an Admin?</button></a>
+
                             </div>
-                            <div class="modal-body">
-                                <form method="POST" role="form" class="text-start" action="{{ route('login') }}">
-                                    @csrf
-                                  <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username" required autofocus autocomplete="username" >
-                                  </div>
-                                  <div class="input-group input-group-outline mb-3">
-                                    <label class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password"
-                                    required >
-                                  </div>
-                                  <div class="form-check form-switch d-flex align-items-center mb-3">
-                                    <input class="form-check-input" type="checkbox" id="rememberMe" name="remember">
-                                    <label class="form-check-label mb-0 ms-2" for="rememberMe">Remember me</label>
-                                  </div>
-                                  <div class="text-center">
-                                    <button type="submit" class="btn btn-success w-100 my-4 mb-2">Sign in</button>
-                                  </div>
-                                  <p class="mt-4 text-sm text-center">
-                                    Forgot your password?
-                                    <a href="{{ route('password.request') }}" class="text-primary text-gradient font-weight-bold">Reset password</a>
-                                  </p>
-                                  <p class="mt-4 text-sm text-center">
-                                    Don't have an account?
-                                    <a href="{{ route('customer.register') }}" class="text-primary text-gradient font-weight-bold">Sign up</a>
-                                  </p>
-                                </form>
-                            
-                            </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-                            {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-                            </div>
-                        </div>
+
                         </div>
                     </div>
                     {{-- <a href="{{ route('customer.logout') }}" class="nav-link text-body font-weight-bold px-0">
@@ -433,6 +448,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
                     <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="{{ route('vendor.login') }}">Become A Vendor</a></li>
                         <li><a class="text-decoration-none" href="#">Home</a></li>
                         <li><a class="text-decoration-none" href="#">About Us</a></li>
                         <li><a class="text-decoration-none" href="#">Shop Locations</a></li>

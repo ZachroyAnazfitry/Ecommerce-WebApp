@@ -44,18 +44,18 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
-  @include('admin.body.aside')
+  @include('vendor.vendor-body.aside')
   
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
-    @include('admin.body.navbar')
+    @include('vendor.vendor-body.navbar')
     <!-- End Navbar -->
     <div class="container-fluid py-4">
 
-        @yield('admin')
+        @yield('vendor')
       
       {{-- footer --}}
-      @include('admin.body.footer')
+      @include('vendor.vendor-body.footer')
       {{-- end of footer --}}
     </div>
   </main>

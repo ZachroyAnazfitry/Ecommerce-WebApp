@@ -6,17 +6,23 @@ use App\Http\Requests\StoreVendorRequest;
 use App\Http\Requests\UpdateVendorRequest;
 use App\Models\User;
 use App\Models\Vendor;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+
 
 class VendorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+    public function vendorRegister()
+    {
+        return view('vendor.vendor-register');
+    }
 
     public function vendorLogin()
     {
@@ -29,7 +35,7 @@ class VendorController extends Controller
         return view('vendor.dashboard');
     }
 
-    public function destroy(Request $request): RedirectResponse
+    public function vendorLogout(Request $request)
     {
         Auth::guard('web')->logout();
 
@@ -37,7 +43,36 @@ class VendorController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login')->with('message', "You've succesfully logout");
+        return redirect('/vendor/login')->with('message', "You've succesfully logout");
+    }
+
+
+    public function vendorNewRegister(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            // add for username field
+            'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed'],
+        ]);
+
+        User::insert([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => Hash::make($request->password),
+            'role' => 'vendor',
+            'status' => 'inactive',
+
+        ]);
+
+        // alert
+        session()->flash('alert-success', 'You have successfully registered!');
+
+        return redirect('/vendor/login')->with('message', 'You have successfully registered!');
+
     }
 
     public function profile()
@@ -136,6 +171,7 @@ class VendorController extends Controller
             return redirect()->back();
         }
     }
+
 
     
 

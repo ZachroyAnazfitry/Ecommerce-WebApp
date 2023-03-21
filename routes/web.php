@@ -69,17 +69,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::put('/category/update/{id}', 'updateNewCategory')->name('category.update');
         Route::get('/category/delete/{id}', 'deleteCategory')->name('category.delete');
 
-
-
     });
     
 });
 
 // Vendor routes
 Route::middleware(['auth', 'role:vendor'])->group(function () {
-    Route::get('/vendor/dashboard', [VendorController::class, 'vendorDashboard'])->name('vendor.dashboard');
-    // Route::get('/admin/logout',[AdminController::class, 'destroy'])->name('admin.logout');
-    // Route::get('/admin/logout',[VendorController::class, 'destroy'])->name('vendor.logout');
+    Route::post('/vendor/dashboard', [VendorController::class, 'vendorDashboard'])->name('vendor.dashboard');
+    Route::get('/vendor/logout',[VendorController::class, 'vendorLogout'])->name('vendor.logout');
     // Route::get('/vendor/profile', [VendorController::class])->name('vendor.profile');
     // Route::get('/vendor/profile/edit', [VendorController::class])->name('vendor.edit');
     // Route::post('/vendor/profile/store', [VendorController::class])->name('store.profile');
@@ -95,14 +92,14 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/customer/profile',[CustomerController::class, 'customerProfile'])->name('customer.profile');
     Route::put('/customer/profile/edit',[CustomerController::class, 'customerEditProfile'])->name('customer.edit');
     
-
-   
-
 });
 
-// login page for roles
+// login page for the 3 roles without authentication permission
 // Route::get('/admin/login',[AdminController::class, 'adminDashboard'])->name('admin.dashboard');
 Route::get('/vendor/login', [VendorController::class, 'vendorLogin'])->name('vendor.login');
+Route::get('/vendor/register', [VendorController::class, 'vendorRegister'])->name('vendor.register');
+Route::post('/vendor/new/register', [VendorController::class, 'vendorNewRegister'])->name('vendor.newRegister');
+
 Route::get('/customer/register', [CustomerController::class, 'customerRegister'])->name('customer.register');
 
 

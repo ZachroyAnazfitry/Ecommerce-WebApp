@@ -21,7 +21,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('admin/') }}/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="{{ asset('admin/') }}/assets/img/favicon.png">
   <title>
-    Zcommerce
+    Let'z Shoppe
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -108,7 +108,7 @@
             <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-success shadow-primary border-radius-lg py-3 pe-1">
-                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Sign in</h4>
+                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Sign in as a New Vendor</h4>
                   <div class="row mt-3">
                     <div class="col-2 text-center ms-auto">
                       <a class="btn btn-link px-3" href="javascript:;">
@@ -129,7 +129,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <form method="POST" role="form" class="text-start" action="{{ route('login') }}">
+                <form method="POST" role="form" class="text-start" action="{{ route('vendor.dashboard') }}">
                     @csrf
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Seller or Shop Name</label>
@@ -153,7 +153,7 @@
                   </p>
                   <p class="mt-4 text-sm text-center">
                     Need to sell your products?
-                    <a href="{{ route('register') }}" class="text-success text-gradient font-weight-bold">Sign up now!</a>
+                    <a href="{{ route('vendor.register') }}" class="text-success text-gradient font-weight-bold">Sign up now!</a>
                   </p>
                 </form>
               </div>
