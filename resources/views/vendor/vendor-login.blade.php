@@ -129,7 +129,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <form method="POST" role="form" class="text-start" action="{{ route('login') }}">
+                <form method="POST" role="form" class="text-start" action="{{ route('vendor.dashboard') }}">
                     @csrf
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Seller or Shop Name</label>
