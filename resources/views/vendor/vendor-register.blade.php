@@ -118,6 +118,16 @@
                       <label class="form-label">Username</label>
                       <input type="text" class="form-control" id="username" name="username" required>
                     </div>
+                     {{-- vendor date --}}
+                    {{-- <div class="input-group input-group-outline mb-3">
+                      <label for="exampleFormControlInput1" class="form-label">Company Register Date</label>
+                      <input type="date" class="form-control text-center" id="exampleFormControlInput1" name="vendor_register_date" >
+                    </div> --}}
+                    {{-- vendor info --}}
+                    {{-- <div class="input-group input-group-outline mb-3">
+                      <label for="exampleFormControlInput1" class="form-label">Vendor information</label>
+                        <textarea class="form-control text-center" id="exampleFormControlTextarea1" rows="3"name="vendor_info"></textarea>
+                    </div> --}}
                     <div class="input-group input-group-outline mb-3">
                         <label class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email" required>

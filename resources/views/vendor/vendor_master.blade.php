@@ -21,10 +21,18 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('admin/') }}/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="{{ asset('admin/') }}/assets/img/favicon.png">
   <title>
-    Z E-commerce Web
+    Let'z Shoppe
   </title>
+
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+  <!-- Material Dashboard CSS -->
+  <link rel="stylesheet" href="assets/css/material-dashboard?v=2.1.2.css">
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  
   <!-- Nucleo Icons -->
   <link href="{{ asset('admin/') }}/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="{{ asset('admin/') }}/assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -35,12 +43,26 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('admin/') }}/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
 
+  {{-- jquery --}}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   {{-- toastr --}}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 	
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+  {{-- datatable --}}
+  <link href="https://cdn.datatables.net/v/dt/dt-1.13.3/datatables.min.css" rel="stylesheet"/>
+  <link href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
+  {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet"/> --}}
+
+  <script src="https://cdn.datatables.net/v/dt/dt-1.13.3/datatables.min.js"></script>
+
+  {{-- jquery validation --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -436,6 +458,27 @@
     }
         toastr.warning("{{ session('warning') }}");
     @endif
+  </script>
+
+  {{-- datatable jquery --}}
+  <script>
+    $(document).ready(function () {
+    $('#dataTable').DataTable();
+  });
+  </script>
+
+  {{-- jquery for uploading image --}}
+  <script>
+    $(document).ready(function(){
+      $('#photo').change(function(e){
+        var file = e.target.files['0'];
+        var reader = new FileReader();
+        reader.onload = function(e){
+          $('#showPhoto').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(file);
+      })
+    })
   </script>
 </body>
 

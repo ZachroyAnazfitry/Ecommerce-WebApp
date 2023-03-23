@@ -75,62 +75,58 @@ class VendorController extends Controller
 
     }
 
-    public function profile()
+    public function vendorProfile()
     {
         
         // get user id who is currently login(authenticated)
         $id = Auth::user()->id;
         // find who is login
-        $admin = User::find($id);
+        $vendor = User::find($id);
 
-        return view('admin.admin-profile', compact('admin'));
+        return view('vendor.vendor-profile', compact('vendor'));
 
     }
 
-    public function editProfile()
+    public function editVendorProfile()
     {
         // edit admin profile
 
         $id = Auth::user()->id;
         // find who is login
-        $admin = User::find($id);
+        $vendor = User::find($id);
 
-        return view('admin.admin-edit-profile', compact('admin'));
+        return view('vendor.vendor-edit-profile', compact('vendor'));
 
     }
 
-    public function storeProfile(Request $request)
+    public function storeVendorProfile(Request $request)
     {
         // need id
         $id = Auth::user()->id;
         // find who is login
-        $admin = User::find($id);
+        $vendor = User::find($id);
 
-        $admin->name = $request->name;
-        $admin->username = $request->username;
-        $admin->email = $request->email;
+        $vendor->name = $request->name;
+        $vendor->username = $request->username;
+        $vendor->email = $request->email;
+        $vendor->vendor_register_date = $request->vendor_register_date;
+        $vendor->vendor_info = $request->vendor_info;
 
         // for file type image
-        // if ($request->file('image')) {
-        //     $image = $request->file('image');
+        if ($request->file('photo')) {
+            $image = $request->file('photo');
 
-        //     change image name
-        //     $imageName = date(YMd).$file->getClientOriginalName();
-        //     move file
-        //     $imageName->move(public_path('upload/admin_images', $imageName));  #create new folder to store uploaded images
-        //     $admin['image'] = $imageName;
-        // }
+            // change image name
+            $imageName = date('YMdHi').$image->getClientOriginalName(); //generate date
+            // move file
+            $image->move(public_path('upload/vendor-photo'), $imageName);  #create new folder to store uploaded images
+            $vendor['photo'] = $imageName; //add new photo to db
+        }
 
-        $admin->save();
+        $vendor->save();
 
-        // toastr notifications
-        // $noti = array(
-        //     'message' => "Admin profile updated succesfully",
-        //     'session' => 'success'
-            
-        // );
 
-        return redirect()->route('admin.profile')->with('message', 'Admin profile updated succesfully');
+        return redirect()->route('vendor.profile')->with('message', 'Vendor profile updated succesfully');
     }
 
     
