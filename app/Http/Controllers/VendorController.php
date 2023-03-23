@@ -63,7 +63,7 @@ class VendorController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
-            'role' => 'vendor',
+            'role' => 'vendor',  //assign directly without admin actions
             'status' => 'inactive',
 
         ]);

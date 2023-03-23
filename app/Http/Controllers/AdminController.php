@@ -127,4 +127,65 @@ class AdminController extends Controller
             return redirect()->back();
         }
     }
+
+    public function manageVendor()
+    {
+        /**
+         * write condition query to get vendor
+         * using status,role column
+
+         */
+
+        $active_vendor = User::where('role', 'vendor')->latest()->get();
+        // $active_vendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
+
+        // only use one datatable
+        // $inactive_vendor = User::where('status', 'inactive')->where('role', 'vendor')->latest()->get();
+
+        return view('admin.manage-vendor', compact('active_vendor'));
+    }
+
+    public function detailsVendor( $id)
+    {
+        // $inactive_vendor = User::find($id);  // return null value if id not found
+
+        // preferred method to catch exception and handling error
+        $inactive_vendor = User::findOrFail($id);
+
+        return view('admin.vendor-details', compact('inactive_vendor'));
+    }
+
+    public function activateVendor(Request $request)
+    {
+        // $id = Auth::user()->id;
+        $id = $request->id;
+
+        // update only status columns form inactive to active
+        $inactive_vendor = User::findOrFail($id)->update([
+                       'status' => 'active',
+        ]);
+
+        // session
+        session()->flash('message', 'Vendor activated succesfully');
+
+        // return to same page
+        return redirect('/admin/manage/vendor');
+    }
+
+    public function deactivateVendor(Request $request)
+    {
+        // $id = Auth::user()->id;
+        $id = $request->id;
+
+        // update only status columns form inactive to active
+        $active_vendor = User::findOrFail($id)->update([
+                       'status' => 'inactive',
+        ]);
+
+        // session
+        session()->flash('message', 'Vendor has been deactivated');
+
+        // return to same page
+        return redirect('/admin/manage/vendor');
+    }
 }

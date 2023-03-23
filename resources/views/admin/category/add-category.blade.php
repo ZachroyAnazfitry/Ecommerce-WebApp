@@ -11,7 +11,7 @@
              @if (isset($editCategory))
              <form action="{{ route('category.update', $editCategory->id) }}" method="POST" enctype="multipart/form-data">
                  @method('PUT')
-                @else
+             @else
              <form action="{{ route('category.store') }}" method="POST" id="commentForm" enctype="multipart/form-data">
                 @endif
                 @csrf

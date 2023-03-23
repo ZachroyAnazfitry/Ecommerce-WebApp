@@ -51,6 +51,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/profile/store', [AdminController::class,'storeProfile'])->name('store.profile');
     Route::get('/admin/profile/change-password',[AdminController::class,'changePasswordProfile'])->name('change.password');
     Route::post('/admin/profile/update-password-profile', [AdminController::class, 'updatePasswordProfile'])->name('password.profile');
+    Route::get('/admin/manage/vendor',[AdminController::class, 'manageVendor'])->name('admin.manage_vendor');
+    Route::get('/admin/vendor/details/{id}',[AdminController::class, 'detailsVendor'])->name('admin.details_vendor');
+    Route::post('/admin/activate/vendor/{id}',[AdminController::class, 'activateVendor'])->name('admin.activate_vendor');
+    Route::post('/admin/deactivate/vendor/{id}',[AdminController::class, 'deactivateVendor'])->name('admin.deactivate_vendor');
+
 
     // Brand - calling BrandController once
     Route::controller(BrandController::class)->group(function () {

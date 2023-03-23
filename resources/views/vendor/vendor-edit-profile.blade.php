@@ -11,7 +11,7 @@
             </center>
            <div class="row">
               <form action="{{ route('store.vendorProfile') }}" method="POST" enctype="multipart/form-data">
-                @csrf
+                @csrf 
                 {{-- profile image --}}
                 <div class="mb-3 mt-3">
                   <label for="exampleFormControlInput1" class="form-label">Profile Image</label>
