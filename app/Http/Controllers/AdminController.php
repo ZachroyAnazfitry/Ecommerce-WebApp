@@ -136,7 +136,7 @@ class AdminController extends Controller
 
          */
 
-        $active_vendor = User::where('role', 'vendor')->latest()->get();
+        $active_vendor = User::where('role', 'vendor')->latest()->get();  // to display both status
         // $active_vendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
 
         // only use one datatable
@@ -172,6 +172,16 @@ class AdminController extends Controller
         return redirect('/admin/manage/vendor');
     }
 
+    public function detailsActiveVendor( $id)
+    {
+        // $inactive_vendor = User::find($id);  // return null value if id not found
+
+        // preferred method to catch exception and handling error
+        $active_vendor = User::findOrFail($id);
+
+        return view('admin.vendor-active-details', compact('active_vendor'));
+    }
+
     public function deactivateVendor(Request $request)
     {
         // $id = Auth::user()->id;
@@ -186,6 +196,6 @@ class AdminController extends Controller
         session()->flash('message', 'Vendor has been deactivated');
 
         // return to same page
-        return redirect('/admin/manage/vendor');
+        return redirect()->route('admin.manage_vendor');
     }
 }

@@ -1,6 +1,31 @@
 @extends('vendor.vendor_master')
 
+
 @section('vendor')
+
+@php
+    // $id = Auth::user()->id;
+    // $vendor = App\Models\User::find($id);  // if getting error User not found, make sure import it
+    // $status = $vendor->status;
+
+    $status = Auth::user()->status; //short way
+@endphp
+
+{{-- message on vendor status --}}
+@if ($status === 'active')
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="color: black">
+      <strong>Your account has been activated!</strong> You are free to sell your products.
+      <button style="color: black" type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div><br>
+    
+@else
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="color: white">
+      <strong>Your account is inactive!</strong> Please wait for admin to approve <em>asap.</em>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div><br>
+    
+@endif
 
 <div class="row">
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -479,5 +504,6 @@
       </div>
     </div>
 </div>
+
     
 @endsection

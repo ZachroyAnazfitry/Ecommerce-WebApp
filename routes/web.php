@@ -54,6 +54,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/manage/vendor',[AdminController::class, 'manageVendor'])->name('admin.manage_vendor');
     Route::get('/admin/vendor/details/{id}',[AdminController::class, 'detailsVendor'])->name('admin.details_vendor');
     Route::post('/admin/activate/vendor/{id}',[AdminController::class, 'activateVendor'])->name('admin.activate_vendor');
+    Route::get('/admin/active/vendor/details/{id}',[AdminController::class, 'detailsActiveVendor'])->name('admin.details_active_vendor');
     Route::post('/admin/deactivate/vendor/{id}',[AdminController::class, 'deactivateVendor'])->name('admin.deactivate_vendor');
 
 

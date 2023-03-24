@@ -37,7 +37,8 @@
                               @if ($active->status == 'inactive')
                                 <button type="button" class="btn btn-danger">{{ $active->status }}</button>
                               @else
-                                <button type="button" class="btn btn-success">{{ $active->status }}</button>
+                              <a href="{{ route('admin.details_active_vendor', $active->id) }}"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Click to deactivate">{{ $active->status }}</button>
+                              </a>
                               @endif
                           </td>
                           {{-- <td><button type="button" class="btn btn-info">{{ $active->status }}</button></td> --}}
