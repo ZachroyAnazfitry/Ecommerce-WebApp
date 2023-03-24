@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
@@ -65,6 +66,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/brands/edit/{id}', 'editNewBrands')->name('brands.edit');
         Route::put('/brands/update/{id}', 'updateNewBrands')->name('brands.update');
         Route::get('/brands/delete/{id}', 'deleteNewBrands')->name('brands.delete');
+
+    
     });
 
     Route::controller(CategoryController::class)->group(function () {
@@ -75,6 +78,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::put('/category/update/{id}', 'updateNewCategory')->name('category.update');
         Route::get('/category/delete/{id}', 'deleteCategory')->name('category.delete');
 
+    });
+
+    // Products
+    Route::controller(ProductsController::class)->group(function () {
+        Route::get('/products', 'manage')->name('products.manage');
+        Route::get('/products/new', 'newProducts')->name('products.new');
+        Route::post('/products', 'store');
     });
     
 });
