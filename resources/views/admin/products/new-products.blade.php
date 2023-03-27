@@ -28,12 +28,27 @@
 
               <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Brand</label>
-                <input type="text" class="form-control text-center" id="brand_name" style="border: 2px solid black" name="brands_id"  >
+                <select class="form-select text-center" style="border: 2px solid black" name="brands_id" aria-label="Default select example">
+                  <option selected disabled>Select the Brands</option>
+
+                  @foreach ($brands as $brand)
+                    <option value="{{ $brand->id }}">{{ $brand->brand_name}}</option>    
+                  @endforeach
+                  
+                </select>
+                {{-- <input type="text" class="form-control text-center" id="brand_name" style="border: 2px solid black" name="brands_id"  > --}}
               </div>
 
               <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Category</label>
-                <input type="text" class="form-control text-center" id="brand_name" style="border: 2px solid black" name="category_id"  >
+                <select class="form-select text-center" style="border: 2px solid black" name="category_id" aria-label="Default select example">
+                  <option selected disabled>Select the Categories</option>
+
+                  @foreach ($categories as $category)
+                  <option value="{{$category->id}}">{{ $category->category_name}}</option>    
+                  @endforeach
+                  
+                </select>
               </div>
 
               <div class="mb-3 mt-3">
@@ -43,7 +58,14 @@
 
               <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Vendor</label>
-                <input type="text" class="form-control text-center" id="brand_name" style="border: 2px solid black" name="vendor_id"  >
+                <select class="form-select text-center" style="border: 2px solid black" name="vendor_id" aria-label="Default select example">
+                  <option selected disabled>Select the Vendor</option>
+
+                  @foreach ($activeVendor as $vendor)
+                  <option value="{{$vendor->id}}">{{ $vendor->name}}</option>    
+                  @endforeach
+                  
+                </select>
               </div>
 
               <div class="mb-3 mt-3">
