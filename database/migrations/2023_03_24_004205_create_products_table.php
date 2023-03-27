@@ -29,7 +29,8 @@ return new class extends Migration
             $table->text('specification')->nullable();
             $table->string('price')->nullable();
             $table->string('discount_price')->nullable();
-            $table->string('thumbnails')->nullable();      //products images
+            $table->string('picture')->nullable();      //products image
+            $table->string('thumbnails')->nullable(); // product multiple images
             $table->string('hot_deals')->nullable();
             $table->string('special_offer')->nullable();
             $table->integer('status')->default(0)->nullable();

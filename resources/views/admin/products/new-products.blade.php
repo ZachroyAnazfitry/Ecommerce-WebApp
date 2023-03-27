@@ -1,133 +1,219 @@
 @extends('admin.admin_master')
 
 @section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <h1>New Products</h1>
 
 <br>
 
-<div class="container">
-  
-  
-      
-       {{-- Add brands --}}
-       <div class="row mb-4">
-        <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
-          <div class="card">
-            <div class="card-header pb-0">
-              <div class="row">
-                <div class="col-lg-6 col-7">
-                  <h6>Projects</h6>
-                  <p class="text-sm mb-0">
-                    <i class="fa fa-check text-info" aria-hidden="true"></i>
-                    <span class="font-weight-bold ms-1">30 done</span> this month
-                  </p>
+<div class="container-fluid">
+  <div class="row">
+
+      <div class="card" style="text-align: center;">
+
+        <div class="card-header card-header-text card-header-primary">
+          <div class="card-text">
+            <h4 class="card-title">Adding New Products</h4>
+          </div>
+        </div>
+
+        {{-- <h2>Adding New Products</h2> --}}
+        
+         <div class="card-body">
+          <div class="row">
+            <form action="" method="POST">
+             
+              @csrf
+
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Brand</label>
+                <input type="text" class="form-control text-center" id="brand_name" style="border: 2px solid black" name="brands_id"  >
+              </div>
+
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Category</label>
+                <input type="text" class="form-control text-center" id="brand_name" style="border: 2px solid black" name="category_id"  >
+              </div>
+
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Sub Category</label>
+                <input type="text" class="form-control text-center" id="brand_name" style="border: 2px solid black" name="sub_category_id"  >
+              </div>
+
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Vendor</label>
+                <input type="text" class="form-control text-center" id="brand_name" style="border: 2px solid black" name="vendor_id"  >
+              </div>
+
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Brand</label>
+                <input type="text" class="form-control text-center" id="brand_name" style="border: 2px solid black" name="brands_id"  >
+              </div>
+              
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Name</label>
+                <input type="text" class="form-control text-center" id="brand_name" style="border: 2px solid black" name="brand_name"  >
+              </div>
+
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Code</label>
+                <input type="text" class="form-control text-center" id="code" style="border: 2px solid black" name="brand_name"  >
+              </div>
+
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Quantity</label>
+                <input type="number" min="0" class="form-control text-center" id="quantity" style="border: 2px solid black" name="brand_name"  >
+              </div>
+
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Tags</label>
+                <input type="text" class="form-control text-center" id="tags" style="border: 2px solid black" name="brand_name"  >
+              </div>
+
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Size</label>
+                <input type="text" class="form-control text-center" id="size" style="border: 2px solid black" name="brand_name"  >
+              </div>
+
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Color</label>
+                <input type="text" class="form-control text-center" id="color" style="border: 2px solid black" name="brand_name"  >
+              </div>
+
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Description</label>
+                <textarea class="form-control text-center" style="border: 2px solid black" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+              </div>
+
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Images</label>
+                <input type="file" class="form-control text-center" style="border: 2px solid black"
+                       onchange="prod(this)" name="picture" >
+
+                {{-- display image --}}
+                <img src="" id="prodPic">
+              </div>
+
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Thumbnails</label>
+                <input type="file" class="form-control text-center" style="border: 2px solid black"
+                       id="thumb" name="thumbnails[]" multiple placeholder="Upload your products images" >
+
+                {{-- display multiple images --}}
+                <div class="row" id="imgThumb">
+
                 </div>
-                
               </div>
-            </div>
-            <div class="card-body px-0 pb-2">
 
-              {{-- form --}}
-              <div class="row">
-                {{-- using same blade for store & edit --}}
-            
-               
-                    <form action="" method="POST" id="commentForm" enctype="multipart/form-data">
-                      
-                      @csrf
-                      <div class="card-header card-header-text card-header-info">
-                          <div class="card-text">
-                              {{-- <h1>@if (isset($editCategory)) Edit @else Add New @endif Products Category</h1> --}}
-                          </div>
-                      </div>
-      
-                      <div class="mb-3 mt-3">
-                          <label for="exampleFormControlInput1" class="form-label">Category Name</label>
-                          <input type="text" class="form-control text-center" id="exampleFormControlInput1" style="border: 2px solid black" name="category_name" value="">
-                      </div>
-
-
-                      <div class="mb-3 mt-3">
-                        <label for="exampleFormControlInput1" class="form-label">Category Name</label>
-                        <input type="text" class="form-control text-center" id="exampleFormControlInput1" style="border: 2px solid black" name="category_name" value="">
-                      </div>
-                      
-      
-                      <button type="submit" class="btn btn-success">Submit</button>
-                      
-                                              
-             
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Price</label>
+                <input type="text" class="form-control text-center" id="color" style="border: 2px solid black" name="price" multiple  >
               </div>
+
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Discount Price</label>
+                <input type="text" class="form-control text-center" id="color" style="border: 2px solid black" name="discount_price" multiple  >
+              </div>
+
+              <div class="mb-3 mt-3">
+                <label for="exampleFormControlInput1" class="form-label">Products Special Offer</label>
+                <input type="text" class="form-control text-center" id="color" style="border: 2px solid black" name="special_offer" multiple  >
+              </div>
+
+              {{-- checkbox --}}
+              <div class="row g-3">
+                <div class="col md-6">
+                  <div class="form-check">
+                    <input class="form-check-input" name="hot_deals" type="checkbox" value="1" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Hot Deals
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col md-6">
+                  <div class="form-check">
+                    <input class="form-check-input" name="specification" type="checkbox" value="1" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Features
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col md-6">
+                  <div class="form-check">
+                    <input class="form-check-input" name="special_offer" type="checkbox" value="1" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Special Offer
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+
+              <br>
               
-            </div>
+        
+              <a href="{{ route('products.manage') }}"><button type="button" class="btn btn-info">Back</button>
+              <button type="submit" class="btn btn-success">Add new products</button>
+              </a>
+            </form>
+        
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="card h-100">
-            <div class="card-header pb-0">
-              <h6>Orders overview</h6>
-              <p class="text-sm">
-                <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
-                <span class="font-weight-bold">24%</span> this month
-              </p>
-            </div>
-            <div class="card-body p-3">
+         </div>
 
-              {{-- forms --}}
-              <div class="row">
-                           
-                    
-
-                      <div class="row">
-                        <div class="col">
-
-                          <div class="mb-3 mt-3">
-                            <label for="exampleFormControlInput1" class="form-label">Category Name</label>
-                            <input type="text" class="form-control text-center" id="exampleFormControlInput1" style="border: 2px solid black" name="category_name" value="">
-                          </div>
-
-                        </div>
-
-                        <div class="col">
-
-                          <div class="mb-3 mt-3">
-                            <label for="exampleFormControlInput1" class="form-label">Category Name</label>
-                            <input type="text" class="form-control text-center" id="exampleFormControlInput1" style="border: 2px solid black" name="category_name" value="">
-                          </div>
-
-                        </div>
-                      </div>
-
-                      <div class="card-header card-header-text card-header-info">
-                          <div class="card-text">
-                              {{-- <h1>@if (isset($editCategory)) Edit @else Add New @endif Products Category</h1> --}}
-                          </div>
-                      </div>
-      
-                     
-
-
-                     
-                      
-      
-                      <button type="submit" class="btn btn-success">Submit</button>
-                      
-                                                
-             
-              </div>
-
-                      </form>  
-
-              
-            </div>
-          </div>
-        </div>
-    </div>
-  
-   
-    
+      </div>
+  </div>
 </div>
 
+{{-- thumbnails --}}
+<script>
+  function prod(input) {
+    // condition
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e){
+        $('#prodPic').attr('src', e.target.result).width(80).height(80);
+
+      };
+      reader.readAsDataURL(input.files[0]);
+      
+    } 
+  }
+
+</script>
+
+{{-- for multiple images(thumbnails) --}}
+<script> 
+ 
+  $(document).ready(function(){
+   $('#thumb').on('change', function(){ //on file input change
+      if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
+      {
+          var data = $(this)[0].files; //this file data
+           
+          $.each(data, function(index, file){ //loop though each file
+              if(/(\.|\/)(gif|jpe?g|png|webp)$/i.test(file.type)){ //check supported file type
+                  var fRead = new FileReader(); //new filereader
+                  fRead.onload = (function(file){ //trigger function on successful read
+                  return function(e) {
+                      var img = $('<img/>').addClass('thumb').attr('src', e.target.result) .width(100)
+                  .height(80); //create image element 
+                      $('#imgThumb').append(img); //append image to output element
+                  };
+                  })(file);
+                  fRead.readAsDataURL(file); //URL representing the file's data.
+              }
+          });
+           
+      }else{
+          alert("Your browser doesn't support File API!"); //if File API is absent
+      }
+   });
+  });
+   
+  </script>
 
 
 
