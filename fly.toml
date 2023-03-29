@@ -1,0 +1,54 @@
+# fly.toml file generated for z-commerce-prototype on 2023-03-28T07:54:45+08:00
+
+app = "z-commerce-prototype"
+kill_signal = "SIGINT"
+kill_timeout = 5
+mounts = []
+primary_region = "sin"
+processes = []
+
+[build]
+  [build.args]
+    NODE_VERSION = "18"
+    PHP_VERSION = "8.2"
+
+[env]
+  APP_ENV = "production"
+  LOG_CHANNEL = "stderr"
+  LOG_LEVEL = "info"
+  LOG_STDERR_FORMATTER = "Monolog\\Formatter\\JsonFormatter"
+  APP_URL = "https://z-commerce-prototype.fly.dev"
+  
+  DB_CONNECTION="mysql"
+  DB_HOST="ap-southeast.connect.psdb.cloud"
+  DB_PORT="3306"
+  DB_DATABASE="z-app"
+  DB_USERNAME="2lgg6gpgvh5lv8iawwc1"
+  DB_PASSWORD="pscale_pw_FHh5fU2J5cfq7CoHeBWYorra7lJIuUkSFVzrw1n8otu"
+  MYSQL_ATTR_SSL_CA="/etc/ssl/cert.pem"
+
+
+
+# File: fly.toml
+[deploy]
+  release_command = "php /var/www/html/artisan migrate --force"
+
+
+
+[[services]]
+  internal_port = 8080
+  processes = ["app"]
+  protocol = "tcp"
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
