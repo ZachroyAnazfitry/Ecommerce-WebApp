@@ -75,6 +75,8 @@ class ProductsController extends Controller
         ]);
 
         // second table - store thumbnails(multiple images)
+
+        // Retrieve the product id from the query builder instance
         $product = $products->first();
         $product_id = $product->id;
 
@@ -96,9 +98,88 @@ class ProductsController extends Controller
         }
 
         // session
-        session()->flash('success', 'Products details added!');
+        session()->flash('success', 'New products details has been added!');
 
         return redirect()->route('products.manage');
 
     }
+
+    public function deleteProducts($id)
+    {
+    //    delete brand function
+        $products = Products::findOrFail($id);
+        $products->delete();
+
+        // session flash
+        session()->flash('success', 'Products deleted!');
+
+        // use sweetalert popup box
+        // Alert::success('Brands deleted!');
+        // Alert::alert('Title', 'Message');
+
+        return back();
+
+    }
+
+    public function seeProducts($id)
+    {
+        // call Brand data
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+
+        // get active vendor information
+        $activeVendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
+
+        $see_products = Products::findOrFail($id);
+        return view('admin.products.editsee-products', compact('see_products','brands','categories','activeVendor'));
+    }
+
+    public function editProducts($id)
+    {
+        // call Brand data
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+
+        // get active vendor information
+        $activeVendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
+
+        $products = Products::findOrFail($id);
+        return view('admin.products.editsee-products', compact('products','brands','categories','activeVendor'));
+    }
+
+    public function updateProducts(Request $request)
+    {
+        $product_id = $request->id;
+
+        Products::findOrFail($product_id)->update([
+            'brands_id' =>$request->brands_id,
+            'category_id' =>$request->category_id,
+            'sub_category_id' =>$request->sub_category_id,
+            'vendor_id' =>$request->vendor_id,
+            'products_name' =>$request->products_name,
+            'products_slug' =>strtolower(str_replace(' ','-', $request->products_name)) ,
+            'code' =>$request->code,
+            'quantity' =>$request->quantity,
+            'tags' =>$request->tags,
+            'size' =>$request->size,
+            'color' =>$request->color,
+            'description' =>$request->description,
+            'specification' =>$request->specification,
+            'price' =>$request->price,
+            'discount_price' =>$request->discount_price,
+            // 'picture' => $picture,
+            // 'thumbnails' => $thumbnails,
+            'hot_deals' =>$request->hot_deals,
+            'special_offer' =>$request->special_offer,
+            'status' => 1,
+            // load time
+            'created_at' => Carbon::now(),
+        ]);
+
+        // session message
+        session()->flash('success', 'Products updated!');
+        return redirect()->route('products.manage');        
+    }
+
+
 }

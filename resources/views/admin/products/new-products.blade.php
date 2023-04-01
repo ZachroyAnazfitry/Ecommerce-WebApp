@@ -129,12 +129,12 @@
               </div>
 
               <div class="mb-3 mt-3">
-                <label for="exampleFormControlInput1" class="form-label">Products Price</label>
+                <label for="exampleFormControlInput1" class="form-label">Products Price (RM)</label>
                 <input type="text" class="form-control text-center" id="price" style="border: 2px solid black" name="price" multiple  >
               </div>
 
               <div class="mb-3 mt-3">
-                <label for="exampleFormControlInput1" class="form-label">Products Discount Price</label>
+                <label for="exampleFormControlInput1" class="form-label">Products Discount Price (RM)</label>
                 <input type="text" class="form-control text-center" id="discount_price" style="border: 2px solid black" name="discount_price" multiple  >
               </div>
 

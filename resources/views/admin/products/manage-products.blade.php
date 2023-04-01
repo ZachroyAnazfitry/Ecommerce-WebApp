@@ -7,14 +7,17 @@
 
 <div class="container">
   
-    <div class="card" style="width: auto">
+    <div class="card">
       
        {{-- Add brands --}}
       
           <!-- Link to add products -->
           <a href="{{ route('products.new') }}" style="color: white"><button style="width: 40%; margin: 20px 0 20px 10px" type="button" class="btn btn-primary">Add New Products Category</button>
           </a>
-      
+
+          <br>
+
+         <span class="badge rounded-pill bg-info" style="width: 30%; margin-left:20px">Total Products: {{ count($products)}}</span>   
 
       <div class="card-footer p-3">
         {{-- datatable --}}
@@ -24,9 +27,9 @@
                   <tr>
                     <th>No.</th>
                     <th>Products</th>
-                    <th> Name</th>
+                    <th style="text-align: center">Name</th>
                     {{-- <th> Description</th> --}}
-                    <th> Quantity</th>
+                    <th>Quantity</th>
                     <th> Price</th>
                     <th>Discount</th>
                     <th>Status</th>
@@ -65,9 +68,32 @@
                             </td>
                             <td>
                               {{-- applied others design instead of words, use icons from font awesome --}}
-                              <a href="" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="See this products details"><i class="fa-solid fa-eye"></i></a>
-                              <a href="" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit this products"><i class="fa-solid fa-pen-to-square"></i></a>
-                              <a href="" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove this products"><i class="fas fa-trash"></i></a>
+                              <a href="{{ route('products.see', $product->id) }}" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="See this products details"><i class="fa-solid fa-eye"></i></a>
+                              <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit this products"><i class="fa-solid fa-pen-to-square"></i></a>
+                              <a href="{{ route('products.delete', $product->id) }}" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove this products"><i class="fas fa-trash"></i></a>
+                              <!-- Button trigger modal -->
+                              {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Launch demo modal
+                              </button> --}}
+
+                              <!-- Modal -->
+                              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      Are you sure you want to delete this products?
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                      <a href="{{ route('products.delete', $product->id) }}"><button type="submit" class="btn btn-primary">Yes</button></a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                               {{-- to change products status --}}
                               @if ($product->status == 1)
                                 <a href="" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Deactivate this product"><i class="fa-solid fa-circle-xmark"></i></a>
