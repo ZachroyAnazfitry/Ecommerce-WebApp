@@ -22,13 +22,13 @@
         
          <div class="card-body">
           <div class="row">
-            <form action="" method="POST">
+            <form action="{{ route('products.store') }}" method="POST" id="validateProductsForm" enctype="multipart/form-data">
              
               @csrf
 
               <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Brand</label>
-                <select class="form-select text-center" style="border: 2px solid black" name="brands_id" aria-label="Default select example">
+                <select class="form-select text-center" style="border: 2px solid black" name="brands_id" aria-label="Default select example" required>
                   <option selected disabled>Select the Brands</option>
 
                   @foreach ($brands as $brand)
@@ -68,39 +68,39 @@
                 </select>
               </div>
 
-              <div class="mb-3 mt-3">
+              {{-- <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Brand</label>
                 <input type="text" class="form-control text-center" id="brand_name" style="border: 2px solid black" name="brands_id"  >
-              </div>
+              </div> --}}
               
               <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Name</label>
-                <input type="text" class="form-control text-center" id="brand_name" style="border: 2px solid black" name="brand_name"  >
+                <input type="text" class="form-control text-center" id="products_name" style="border: 2px solid black" name="products_name"  >
               </div>
 
               <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Code</label>
-                <input type="text" class="form-control text-center" id="code" style="border: 2px solid black" name="brand_name"  >
+                <input type="text" class="form-control text-center" id="code" style="border: 2px solid black" name="code"  >
               </div>
 
               <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Quantity</label>
-                <input type="number" min="0" class="form-control text-center" id="quantity" style="border: 2px solid black" name="brand_name"  >
+                <input type="number" min="0" class="form-control text-center" id="quantity" style="border: 2px solid black" name="quantity"  >
               </div>
 
               <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Tags</label>
-                <input type="text" class="form-control text-center" id="tags" style="border: 2px solid black" name="brand_name"  >
+                <input type="text" class="form-control text-center" id="tags" style="border: 2px solid black" name="tags"  >
               </div>
 
               <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Size</label>
-                <input type="text" class="form-control text-center" id="size" style="border: 2px solid black" name="brand_name"  >
+                <input type="text" class="form-control text-center" id="size" style="border: 2px solid black" name="size"  >
               </div>
 
               <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Color</label>
-                <input type="text" class="form-control text-center" id="color" style="border: 2px solid black" name="brand_name"  >
+                <input type="text" class="form-control text-center" id="color" style="border: 2px solid black" name="color"  >
               </div>
 
               <div class="mb-3 mt-3">
@@ -111,7 +111,7 @@
               <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Images</label>
                 <input type="file" class="form-control text-center" style="border: 2px solid black"
-                       onchange="prod(this)" name="picture" >
+                       onchange="prod(this)" name="picture" required >
 
                 {{-- display image --}}
                 <img src="" id="prodPic">
@@ -130,17 +130,17 @@
 
               <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Price</label>
-                <input type="text" class="form-control text-center" id="color" style="border: 2px solid black" name="price" multiple  >
+                <input type="text" class="form-control text-center" id="price" style="border: 2px solid black" name="price" multiple  >
               </div>
 
               <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Discount Price</label>
-                <input type="text" class="form-control text-center" id="color" style="border: 2px solid black" name="discount_price" multiple  >
+                <input type="text" class="form-control text-center" id="discount_price" style="border: 2px solid black" name="discount_price" multiple  >
               </div>
 
               <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Special Offer</label>
-                <input type="text" class="form-control text-center" id="color" style="border: 2px solid black" name="special_offer" multiple  >
+                <input type="text" class="form-control text-center" id="special_offer" style="border: 2px solid black" name="special_offer" multiple  >
               </div>
 
               {{-- checkbox --}}
@@ -236,6 +236,22 @@
   });
    
   </script>
+
+  {{-- validation --}}
+  <script>
+    $("#validateProductsForm").validate({
+  rules: {
+    products_name: "required",
+    code: "required",
+   
+  },
+  messages: {
+    products_name: "The products  name is needed!",
+    code: "Please insert the code!",
+
+  }
+});
+</script>
 
 
 

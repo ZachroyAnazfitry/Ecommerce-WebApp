@@ -165,9 +165,17 @@ https://templatemo.com/tm-559-zay-shop
                                 {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
                                 </div>
 
+                                <hr>
 
-                                <a href="{{ route('vendor.login') }}"><button style="width: 40%; margin: 20px 0 20px 10px" type="button" class="btn btn-success">Are you a Vendor?</button></a>
-                                <a href="{{ route('login') }}"><button style="width: 40%; margin: 20px 0 20px 10px;" style="align-content: right" type="button" class="btn btn-info">Are you an Admin?</button></a>
+                                <div class="row" style="text-align: center">
+                                    <div class="col">
+                                        <a href="{{ route('vendor.login') }}"><button style="width: auto; margin: 20px 0 20px 10px" type="button" class="btn btn-success">Are you a Vendor?</button></a>
+
+                                    </div>
+                                    <div class="col">
+                                        <a href="{{ route('login') }}"><button style="width: auto; margin: 20px 0 20px 10px;" style="align-content: right" type="button" class="btn btn-info">Are you an Admin?</button></a>
+                                    </div>
+                                </div>
 
                             </div>
 

@@ -19,12 +19,12 @@
       <div class="card-footer p-3">
         {{-- datatable --}}
         <div class="card-body">
-          <table id="dataTable" class="table table-striped" style="width:100%">
+          <table id="dataTable" class="table table-striped" style="width:auto">
               <thead>
                   <tr>
                     <th>No.</th>
-                    <th>Products Image</th>
-                    <th>Products Name</th>
+                    <th>Products</th>
+                    <th> Name</th>
                     <th> Description</th>
                     <th> Quantity</th>
                     <th> Price</th>
@@ -37,13 +37,17 @@
                     @foreach ($products as $product)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td><img src="{{ asset($product->thumbnails) }}" alt="" style="width: 70px; height:40px"></td>
+                            <td><img src="{{ asset($product->picture) }}" alt="" style="width: 70px; height:40px"></td>
                             <td>{{ $product->products_name }}</td>
                             <td>{{ $product->description }}</td>
                             <td>{{ $product->quantity }}</td>
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->status }}</td>
-                            <td></td>
+                            <td>
+                              <a href="" class="btn btn-info">Edit</a>
+                  
+                              <a href="" class="btn btn-danger">Delete</a>
+                          </td>
                         
                         </tr>
                     
