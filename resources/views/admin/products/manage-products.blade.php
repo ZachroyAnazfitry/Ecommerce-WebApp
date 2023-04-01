@@ -7,7 +7,7 @@
 
 <div class="container">
   
-    <div class="card">
+    <div class="card" style="width: auto">
       
        {{-- Add brands --}}
       
@@ -25,9 +25,10 @@
                     <th>No.</th>
                     <th>Products</th>
                     <th> Name</th>
-                    <th> Description</th>
+                    {{-- <th> Description</th> --}}
                     <th> Quantity</th>
                     <th> Price</th>
+                    <th>Discount</th>
                     <th>Status</th>
                     <th>Action</th>
                       
@@ -39,14 +40,40 @@
                             <td>{{ $loop->iteration }}</td>
                             <td><img src="{{ asset($product->picture) }}" alt="" style="width: 70px; height:40px"></td>
                             <td>{{ $product->products_name }}</td>
-                            <td>{{ $product->description }}</td>
+                            {{-- <td>{{ $product->description }}</td> --}}
                             <td>{{ $product->quantity }}</td>
                             <td>{{ $product->price }}</td>
-                            <td>{{ $product->status }}</td>
                             <td>
-                              <a href="" class="btn btn-info">Edit</a>
-                  
-                              <a href="" class="btn btn-danger">Delete</a>
+                              @if ($product->discount_price == NULL)
+                                   <span class="badge rounded-pill bg-success">No discount</span>
+                              @else
+                                  {{-- calculation for discounted price --}}
+                                  @php
+                                      $calculated = $product->price - $product->discount_price;
+                                      $final_amount = ($calculated/$product->price)*100;
+                                  @endphp
+                                  {{-- display calculation --}}
+                                  <span class="badge rounded-pill bg-danger">{{ round($final_amount) }}%</span>
+
+                              @endif
+                            <td>
+                              @if ($product->status == 1)
+                                  <span class="badge rounded-pill bg-success">Active</span>
+                              @else
+                                  <span class="badge rounded-pill bg-danger">Inactive</span>
+                              @endif
+                            </td>
+                            <td>
+                              {{-- applied others design instead of words, use icons from font awesome --}}
+                              <a href="" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="See this products details"><i class="fa-solid fa-eye"></i></a>
+                              <a href="" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit this products"><i class="fa-solid fa-pen-to-square"></i></a>
+                              <a href="" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove this products"><i class="fas fa-trash"></i></a>
+                              {{-- to change products status --}}
+                              @if ($product->status == 1)
+                                <a href="" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Deactivate this product"><i class="fa-solid fa-circle-xmark"></i></a>
+                              @else
+                                <a href="" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Activate this product"><i class="fa-solid fa-check"></i></a>
+                              @endif
                           </td>
                         
                         </tr>
