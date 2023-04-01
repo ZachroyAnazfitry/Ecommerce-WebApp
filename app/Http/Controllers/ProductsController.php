@@ -75,6 +75,9 @@ class ProductsController extends Controller
         ]);
 
         // second table - store thumbnails(multiple images)
+        $product = $products->first();
+        $product_id = $product->id;
+
         $thumbnails = $request->file('thumbnails');
         foreach ($thumbnails as $thumbnail) {
             // create unique id with its own image extension(jpeg,png)
@@ -86,7 +89,7 @@ class ProductsController extends Controller
             // insert data
             ProductsImages::insert([
                 // save product_id variable above
-                'product_id' => $products,
+                'products_id' => $product_id,
                 'products_photo' => $upload_thumbnails,
                 'created_at' => Carbon::now(),
             ]);
