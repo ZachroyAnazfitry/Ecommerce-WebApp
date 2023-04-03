@@ -104,22 +104,6 @@ class ProductsController extends Controller
 
     }
 
-    public function deleteProducts($id)
-    {
-    //    delete brand function
-        $products = Products::findOrFail($id);
-        $products->delete();
-
-        // session flash
-        session()->flash('success', 'Products deleted!');
-
-        // use sweetalert popup box
-        // Alert::success('Brands deleted!');
-        // Alert::alert('Title', 'Message');
-
-        return back();
-
-    }
 
     public function seeProducts($id)
     {
@@ -180,6 +164,57 @@ class ProductsController extends Controller
         session()->flash('success', 'Products updated!');
         return redirect()->route('products.manage');        
     }
+
+    public function inactiveProducts($id)
+    {
+        Products::findOrFail($id)->update([
+            'status' => 0,
+        ]);
+
+           // alert
+        session()->flash('success', 'Products deactivated!');
+        return back();
+    }
+
+    public function activeProducts($id)
+    {
+        Products::findOrFail($id)->update([
+            'status' => 1,
+        ]);
+
+           // alert
+        session()->flash('success', 'Products deactivated!');
+        return back();
+    }
+
+
+    public function deleteProducts($id)
+    {
+    //    delete brand function
+        $products = Products::findOrFail($id);
+        // also delete picture and thumbnails in created files
+        unlink($products->picture);
+        $products->delete();
+
+        // delete multilple pictures
+        $multilple = ProductsImages::where('products_id',$id)->get();
+        foreach ($multilple as $multi) {
+            unlink($multi->products_photo);
+            ProductsImages::where('products_id',$id)->delete();
+        }
+
+        // session flash
+        session()->flash('success', 'Products deleted!');
+
+        // use sweetalert popup box - not working
+        // Alert::success('Brands deleted!');
+        // Alert::alert('Title', 'Message');
+
+        return back();
+
+    }
+
+ 
 
 
 }

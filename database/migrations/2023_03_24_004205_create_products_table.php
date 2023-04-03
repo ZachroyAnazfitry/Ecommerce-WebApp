@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('brands_id');
             $table->integer('category_id');
             $table->integer('sub_category_id'); // no section yet
-            $table->integer('vendor_id');
+            $table->integer('vendor_id')->nullable();
 
             $table->string('products_name')->nullable();
             $table->string('products_slug')->nullable();
@@ -31,8 +31,8 @@ return new class extends Migration
             $table->string('discount_price')->nullable();
             $table->string('picture')->nullable();      //products image
             $table->string('thumbnails')->nullable(); // product multiple images
-            $table->string('hot_deals')->nullable();
-            $table->string('special_offer')->nullable();
+            $table->integer('hot_deals')->nullable();
+            $table->integer('special_offer')->nullable();
             $table->integer('status')->default(0)->nullable();
 
             $table->timestamps();

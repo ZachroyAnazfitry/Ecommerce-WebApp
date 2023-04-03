@@ -154,14 +154,14 @@
                   </div>
                 </div>
 
-                <div class="col md-6">
+                {{-- <div class="col md-6">
                   <div class="form-check">
                     <input class="form-check-input" name="specification" type="checkbox" value="1" id="flexCheckDefault">
                     <label class="form-check-label" for="flexCheckDefault">
                       Features
                     </label>
                   </div>
-                </div>
+                </div> --}}
 
                 <div class="col md-6">
                   <div class="form-check">

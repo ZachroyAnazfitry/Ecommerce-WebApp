@@ -222,25 +222,62 @@
               <div class="row g-3">
                 <div class="col md-6">
                   <div class="form-check">
-                    <input class="form-check-input" name="hot_deals" type="checkbox" value="1" id="flexCheckDefault">
+                    @if (isset($see_products))
+                        @if ($see_products->hot_deals == 1)
+                          <input class="form-check-input" name="hot_deals" type="checkbox" id="flexCheckDefault"  value="1" checked >
+                        @else
+                          <input class="form-check-input" name="hot_deals" type="checkbox" id="flexCheckDefault"  value="0" >
+                        @endif
+                    @else
+                        @if ($products->hot_deals == 1)
+                          <input class="form-check-input" name="hot_deals" type="checkbox" id="flexCheckDefault"  value="1" checked >
+                        @else
+                          <input class="form-check-input" name="hot_deals" type="checkbox" id="flexCheckDefault"  value="0"  >
+                        @endif       
+                    @endif
                     <label class="form-check-label" for="flexCheckDefault">
                       Hot Deals
                     </label>
                   </div>
                 </div>
 
-                <div class="col md-6">
+                {{-- <div class="col md-6">
                   <div class="form-check">
-                    <input class="form-check-input" name="specification" type="checkbox" value="1" id="flexCheckDefault">
+                    @if (isset($see_products))
+                    @if ($see_products->specification == 1)
+                      <input class="form-check-input" name="specification" type="checkbox" id="flexCheckDefault"  value="1" checked >
+                    @else
+                      <input class="form-check-input" name="specification" type="checkbox" id="flexCheckDefault"  value="0" >
+                    @endif
+                    @else
+                        @if ($products->specification == 1)
+                          <input class="form-check-input" name="specification" type="checkbox" id="flexCheckDefault"  value="1" checked >
+                        @else
+                          <input class="form-check-input" name="specification" type="checkbox" id="flexCheckDefault"  value="0"  >
+                        @endif       
+                    @endif
                     <label class="form-check-label" for="flexCheckDefault">
                       Features
                     </label>
                   </div>
-                </div>
+                </div> --}}
 
                 <div class="col md-6">
                   <div class="form-check">
-                    <input class="form-check-input" name="special_offer" type="checkbox" value="1" id="flexCheckDefault">
+                    @if (isset($see_products))
+                    @if ($see_products->special_offer == 1)
+                      <input class="form-check-input" name="special_offer" type="checkbox" id="flexCheckDefault"  value="1" checked >
+                    @else
+                      <input class="form-check-input" name="special_offer" type="checkbox" id="flexCheckDefault"  value="0" >
+                    @endif
+                    @else
+                        @if ($products->special_offer == 1)
+                          <input class="form-check-input" name="special_offer" type="checkbox" id="flexCheckDefault"  value="1" checked >
+                        @else
+                          <input class="form-check-input" name="special_offer" type="checkbox" id="flexCheckDefault"  value="0"  >
+                        @endif       
+                    @endif
+                    {{-- <input class="form-check-input" name="special_offer" type="checkbox" id="flexCheckDefault"  value="1" > --}}
                     <label class="form-check-label" for="flexCheckDefault">
                       Special Offer
                     </label>
@@ -250,12 +287,11 @@
               </div>
 
               <br>
-              
-        
+
               <a href="{{ route('products.manage') }}"><button type="button" class="btn btn-info">Back</button>
                 @if (isset($see_products))
                     
-                @else
+                @else                                          
                   <button type="submit" class="btn btn-success">Save changes</button>
                 @endif
               </a>
@@ -264,6 +300,52 @@
           </div>
          </div>
 
+      </div>
+
+      <br>
+
+      <div class="card" style="margin: 10px 0 10px 0">
+        <div class="card-body">
+          @if (isset($see_products))
+              {{-- no action --}}
+          @else 
+
+          <form action="{{ route('products.update.images', $products->id) }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="id" value="{{$products->id}}" >
+            <input type="hidden" name="old_img" value="{{$products->id}}" >
+              
+          @endif
+          
+            <div class="mb-3">
+              @if (isset($see_products))
+              @else
+                <label for="formFile" class="form-label" style="text-align: center">New Image</label>
+                <input class="form-control" type="file" name="picture" id="formFile" style="border: 2px solid black;">
+              @endif
+            </div>
+
+            {{-- display image --}}
+            <div class="mb-3">
+              <label for="formFile" class="form-label" style="text-align: center">Current Products Icon</label>
+              @if (isset($see_products))
+                <img src="{{ asset($see_products->picture) }}" alt="" class="form-control" style="width: 100px; height:100px">
+              @else
+                <img src="{{ asset($products->picture) }}" alt="" class="form-control" style="width: 100px; height:100px">
+              @endif
+            </div>
+
+            {{-- button --}}
+            <a href="{{ route('products.manage') }}"><button type="button" class="btn btn-info">Back</button>
+              @if (isset($see_products))
+                  
+              @else
+                <button type="submit" class="btn btn-success">Save changes</button>
+              @endif
+            </a>
+
+          </form>
+        </div>
       </div>
   </div>
 </div>
