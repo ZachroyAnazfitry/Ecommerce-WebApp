@@ -33,7 +33,8 @@
         @else
 
         <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-danger" href="./pages/dashboard.html">
+          {{-- active bg-gradient-danger --}}
+          <a class="nav-link text-white " href="./pages/dashboard.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">dashboard</i>
             </div>
@@ -41,7 +42,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="./pages/tables.html">
+          <a class="nav-link text-white " href="{{ route('vendor.all.products') }}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>

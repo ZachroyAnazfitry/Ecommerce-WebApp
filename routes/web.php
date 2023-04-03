@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\VendorProductsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -108,6 +109,15 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
     Route::post('/vendor/profile/store', [VendorController::class,'storeVendorProfile'])->name('store.vendorProfile');
     // Route::get('/vendor/profile/change-password',[VendorController::class])->name('change.password');
     // Route::post('/vendor/profile/update-password-profile', [VendorController::class])->name('password.profile');
+
+
+    // Vendor Products management
+    Route::controller(VendorProductsController::class)->group(function () {
+        Route::get('/vendor/products', 'allProducts')->name('vendor.all.products');
+        Route::get('/vendor/new/products', 'newProducts')->name('vendor.add.products');
+        Route::post('/vendor/store/products', 'storeProducts')->name('vendor.store.products');
+        
+    });
 
 });
 
