@@ -69,9 +69,9 @@
                             </td>
                             <td>
                               {{-- applied others design instead of words, use icons from font awesome --}}
-                              <a href="{{ route('products.see', $product->id) }}" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="See this products details"><i class="fa-solid fa-eye"></i></a>
-                              <a href="{{ route('products.edit', $product->id) }}" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit this products"><i class="fa-solid fa-pen-to-square"></i></a>
-                              <a href="{{ route('products.delete', $product->id) }}" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit this products"><i class="fa-solid fas fa-trash"></i></a>
+                              <a href="{{ route('vendor.see.products', $product->id) }}" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="See this products details"><i class="fa-solid fa-eye"></i></a>
+                              <a href="{{ route('vendor.edit.products', $product->id) }}" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit this products"><i class="fa-solid fa-pen-to-square"></i></a>
+                              <a href="{{ route('vendor.delete.products', $product->id) }}" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete this products"><i class="fa-solid fas fa-trash"></i></a>
                               {{-- <a href="" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Remove this products"><i class="fas fa-trash"></i></a> --}}
                               <!-- Button trigger modal -->
                               {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -98,9 +98,9 @@
                               </div> --}}
                               {{-- to change products status --}}
                               @if ($product->status == 1)
-                                <a href="" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Deactivate this product"><i class="fa-solid fa-circle-xmark"></i></a>
+                                <a href="{{ route('vendor.inactive.products', $product->id) }}" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Deactivate this product"><i class="fa-solid fa-circle-xmark"></i></a>
                               @else
-                                <a href="" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Activate this product"><i class="fa-solid fa-check"></i></a>
+                                <a href="{{ route('vendor.active.products',$product->id) }}" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Activate this product"><i class="fa-solid fa-check"></i></a>
                               @endif
                           </td>
                         

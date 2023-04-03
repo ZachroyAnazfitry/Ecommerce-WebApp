@@ -1,6 +1,7 @@
-@extends('admin.admin_master')
+@extends('vendor.vendor_master')
 
-@section('admin')
+
+@section('vendor')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <h1>New Products</h1>
@@ -29,7 +30,7 @@
             @if (isset($see_products))
                 
             @else
-              <form action="{{ route('products.update', $products->id) }}" method="POST" id="validateProductsForm" enctype="multipart/form-data">
+              <form action="{{ route('vendor.update.products', $products->id) }}" method="POST" id="validateProductsForm" enctype="multipart/form-data">
               @method('PUT')
             @endif
              
@@ -92,24 +93,6 @@
                 >
               </div>
 
-              <div class="mb-3 mt-3">
-                <label for="exampleFormControlInput1" class="form-label">Products Vendor</label>
-                @if (isset($see_products))
-                    @foreach ($activeVendor as $vendor)
-                        <input type="text" class="form-control text-center" id="vendor_id" style="border: 2px solid black" name="vendor_id" value="{{ $vendor->name }}" readonly  >
-                    @endforeach
-                @else
-                  <select class="form-select text-center" style="border: 2px solid black" name="vendor_id" aria-label="Default select example">
-                    {{-- <option selected disabled>Select the Vendor</option> --}}
-
-                    @foreach ($activeVendor as $vendor)
-                    <option value="{{$vendor->id}}">{{ $vendor->name}}</option>    
-                    @endforeach
-                    
-                  </select>    
-                @endif
-                
-              </div>
 
               {{-- <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Brand</label>
@@ -288,7 +271,7 @@
 
               <br>
 
-              <a href="{{ route('products.manage') }}"><button type="button" class="btn btn-info">Back</button>
+              <a href="{{ route('vendor.all.products') }}"><button type="button" class="btn btn-info">Back</button>
                 @if (isset($see_products))
                     
                 @else                                          
@@ -304,10 +287,12 @@
 
       <br>
 
-      <div class="card" style="margin: 10px 0 10px 0">
+      {{-- update picture & thumbnails - hold --}}
+
+      {{-- <div class="card" style="margin: 10px 0 10px 0">
         <div class="card-body">
           @if (isset($see_products))
-              {{-- no action --}}
+              
           @else 
 
           <form action="{{ route('products.update.images', $products->id) }}" method="post" enctype="multipart/form-data">
@@ -325,7 +310,7 @@
               @endif
             </div>
 
-            {{-- display image --}}
+            
             <div class="mb-3">
               <label for="formFile" class="form-label" style="text-align: center">Current Products Icon</label>
               @if (isset($see_products))
@@ -335,8 +320,8 @@
               @endif
             </div>
 
-            {{-- button --}}
-            <a href="{{ route('products.manage') }}"><button type="button" class="btn btn-info">Back</button>
+            
+            <a href="{{ route('vendor.all.products') }}"><button type="button" class="btn btn-info">Back</button>
               @if (isset($see_products))
                   
               @else
@@ -346,7 +331,7 @@
 
           </form>
         </div>
-      </div>
+      </div> --}}
   </div>
 </div>
 

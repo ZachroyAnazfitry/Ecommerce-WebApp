@@ -103,4 +103,106 @@ class VendorProductsController extends Controller
         return redirect()->route('vendor.all.products');
 
     }
+
+    public function seeProducts($id)
+    {
+        // call Brand data
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+        $see_products = Products::findOrFail($id);
+
+        return view('vendor.products.editsee-products', compact('see_products','brands','categories'));
+    }
+
+    public function editProducts($id)
+    {
+        // call Brand data
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+        $products = Products::findOrFail($id);
+
+        return view('vendor.products.editsee-products', compact('products','brands','categories'));
+    }
+
+    public function updateProducts(Request $request)
+    {
+        $product_id = $request->id;
+
+        Products::findOrFail($product_id)->update([
+            'brands_id' =>$request->brands_id,
+            'category_id' =>$request->category_id,
+            'sub_category_id' =>$request->sub_category_id,
+            // 'vendor_id' =>$request->vendor_id,
+            'products_name' =>$request->products_name,
+            'products_slug' =>strtolower(str_replace(' ','-', $request->products_name)) ,
+            'code' =>$request->code,
+            'quantity' =>$request->quantity,
+            'tags' =>$request->tags,
+            'size' =>$request->size,
+            'color' =>$request->color,
+            'description' =>$request->description,
+            'specification' =>$request->specification,
+            'price' =>$request->price,
+            'discount_price' =>$request->discount_price,
+            // 'picture' => $picture,
+            // 'thumbnails' => $thumbnails,
+            'hot_deals' =>$request->hot_deals,
+            'special_offer' =>$request->special_offer,
+            'status' => 1,
+            // load time
+            'created_at' => Carbon::now(),
+        ]);
+
+        // session message
+        session()->flash('success', 'Products updated!');
+        return redirect()->route('products.manage');        
+    }
+
+    public function inactiveProducts($id)
+    {
+        Products::findOrFail($id)->update([
+            'status' => 0,
+        ]);
+
+           // alert
+        session()->flash('success', 'Products deactivated!');
+        return back();
+    }
+
+    public function activeProducts($id)
+    {
+        Products::findOrFail($id)->update([
+            'status' => 1,
+        ]);
+
+           // alert
+        session()->flash('success', 'Products deactivated!');
+        return back();
+    }
+
+    public function deleteProducts($id)
+    {
+    //    delete brand function
+        $products = Products::findOrFail($id);
+        // also delete picture and thumbnails in created files
+        unlink($products->picture);
+        $products->delete();
+
+        // delete multilple pictures
+        $multilple = ProductsImages::where('products_id',$id)->get();
+        foreach ($multilple as $multi) {
+            unlink($multi->products_photo);
+            ProductsImages::where('products_id',$id)->delete();
+        }
+
+        // session flash
+        session()->flash('success', 'Products deleted!');
+
+        // use sweetalert popup box - not working
+        // Alert::success('Brands deleted!');
+        // Alert::alert('Title', 'Message');
+
+        return back();
+
+    }
 }

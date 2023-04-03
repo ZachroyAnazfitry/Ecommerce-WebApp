@@ -116,6 +116,12 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/products', 'allProducts')->name('vendor.all.products');
         Route::get('/vendor/new/products', 'newProducts')->name('vendor.add.products');
         Route::post('/vendor/store/products', 'storeProducts')->name('vendor.store.products');
+        Route::get('/vendor/see/products/{id}', 'seeProducts')->name('vendor.see.products');
+        Route::get('/vendor/edit/products/{id}', 'editProducts')->name('vendor.edit.products');
+        Route::put('/vendor/update/products/{id}', 'updateProducts')->name('vendor.update.products');
+        Route::get('/vendor/inactive/products/{id}', 'inactiveProducts')->name('vendor.inactive.products');
+        Route::get('/vendor/active/products/{id}', 'activeProducts')->name('vendor.active.products');
+        Route::get('/vendor/delete/products/{id}', 'deleteProducts')->name('vendor.delete.products');
         
     });
 
