@@ -1,5 +1,11 @@
 @extends('admin.admin_master')
 
+<style>
+  input, textarea{
+    text-transform: uppercase;
+  }
+</style>
+
 @section('admin')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -95,7 +101,15 @@
 
               <div class="mb-3 mt-3">
                 <label for="exampleFormControlInput1" class="form-label">Products Size</label>
-                <input type="text" class="form-control text-center" id="size" style="border: 2px solid black" name="size"  >
+                <select class="form-select text-center" style="border: 2px solid black" name="size" aria-label="Default select example" required>
+                  <option selected disabled>Select the Brands</option>
+                  <option value="1">S</option>
+                  <option value="2">M</option>
+                  <option value="3">L</option>
+                  <option value="4">XL</option>
+                  
+                </select>
+                {{-- <input type="text" class="form-control text-center" id="size" style="border: 2px solid black" name="size"  > --}}
               </div>
 
               <div class="mb-3 mt-3">

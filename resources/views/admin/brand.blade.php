@@ -1,5 +1,11 @@
 @extends('admin.admin_master')
 
+<style>
+  input{
+    text-transform: uppercase;
+  }
+</style>
+
 @section('admin')
 <h1>Brands</h1>
 

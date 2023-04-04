@@ -1,6 +1,12 @@
 @extends('admin.admin_master')
 @section('admin')
 
+<style>
+  input{
+    text-transform: uppercase;
+  }
+</style>
+
 <div class="container-fluid">
     <div class="row">
 

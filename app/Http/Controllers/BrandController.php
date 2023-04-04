@@ -100,7 +100,7 @@ class BrandController extends Controller
              }
      
              Brand::findOrFail($brand_id)->update([
-                 'brand_name' => $request->brand_name,
+                 'brand_name' => strtoupper($request->brand_name),
                  'brand_slug' => strtolower(str_replace(' ', '-',$request->brand_name)),
                  'brand_image' => $save_url, 
              ]);
@@ -110,7 +110,7 @@ class BrandController extends Controller
 
         } else {
             Brand::findOrFail($brand_id)->update([
-                'brand_name' => $request->brand_name,
+                'brand_name' => strtoupper($request->brand_name),
                 'brand_slug' => strtolower(str_replace(' ', '-',$request->brand_name)), 
             ]);
 

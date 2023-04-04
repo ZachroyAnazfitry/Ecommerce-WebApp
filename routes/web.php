@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\VendorProductsController;
@@ -152,5 +153,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Landing page routes
+Route::get('/shop', [ShopController::class, 'viewShop'])->name('shop.products');
+Route::get('/category/details/{id}/{slug}', [ShopController::class, 'oneCategory']);
+Route::get('/products/details/{id}', [ShopController::class, 'oneProducts']);
+
 
 require __DIR__.'/auth.php';
