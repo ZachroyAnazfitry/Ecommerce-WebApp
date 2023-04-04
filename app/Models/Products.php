@@ -10,4 +10,18 @@ class Products extends Model
     use HasFactory;
 
     protected $guarded = []; 
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brands_id','id');
+    }
+    public function vendor()
+    {
+        return $this->belongsTo(User::class, 'vendor_id','id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id','id');
+    }
 }

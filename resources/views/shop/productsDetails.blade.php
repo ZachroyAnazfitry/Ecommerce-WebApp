@@ -151,10 +151,14 @@
                         </p>
                         <ul class="list-inline">
                             <li class="list-inline-item">
-                                <h6>Brand:{{ $products_details->brands_id }}</h6>
+                                <h6>Brand:</h6>
                             </li>
                             <li class="list-inline-item">
-                                <p class="text-muted"><strong>Easy Wear</strong></p>
+                                @if ($products_details->brands_id == NULL)
+                                    <p class="text-muted"><strong>Zac Fashion</strong></p>
+                                @else
+                                    <p class="text-muted"><strong>{{ $products_details['brand']['brand_name'] }}</strong></p>
+                                @endif
                             </li>
                         </ul>
 

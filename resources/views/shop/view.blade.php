@@ -67,10 +67,13 @@
                         </div>
                     </div>
                 </div>
+
+                @php
+                    $products = App\Models\Products::where('status',1)->get();
+                @endphp
+                @foreach ($products as $product)
                 <div class="row">
-                    {{-- @php
-                        $products = App\Models\Product::where('id', 'vendor_id')->get();;
-                    @endphp --}}
+                   
                     @foreach ($categories as $category)
                     <div class="col-md-4">
                         
@@ -85,8 +88,17 @@
                                     </ul> --}}
                                 </div>
                             </div>
+                           
                             <div class="card-body">
                                 <a href="{{ url('category/details/'.$category->id.'/'.$category->category_slug) }}" class="h3 text-decoration-none">{{$category->category_name}}</a>
+                                
+                                <h6>By:</h6>
+                                @if ($product->vendor_id == NULL)
+                                <p class="text-muted"><strong>Zac Fashion</strong></p>
+                                @else
+                                    <p class="text-muted"><strong>{{ $product['vendor']['name'] }}</strong></p>
+                                @endif
+           
                                 {{-- <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li>M/L/X/XL</li>
                                     <li class="pt-2">
@@ -117,6 +129,7 @@
                   @endforeach
                    
                 </div>
+                @endforeach
                 <div div="row">
                     <ul class="pagination pagination-lg justify-content-end">
                         <li class="page-item disabled">

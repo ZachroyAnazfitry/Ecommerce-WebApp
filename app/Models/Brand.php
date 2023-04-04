@@ -10,4 +10,8 @@ class Brand extends Model
     use HasFactory;
     // make fields fillable
     protected $guarded = [];
+
+    public function products() {
+        return $this->hasMany(Products::class);
+    } 
 }
