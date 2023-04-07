@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Category;
-
+use App\Models\ProductsImages;
 
 class ShopController extends Controller
 {
@@ -28,6 +28,10 @@ class ShopController extends Controller
     {
         $products_details = Products::findOrFail($id);
         // dd($products_details);
-        return view('shop.productsDetails', compact('products_details'));
+
+        // to display images
+        $multiple_images = ProductsImages::where('products_id',$id)->get();
+        // dd( $multiple_images );
+        return view('shop.productsDetails', compact('products_details','multiple_images'));
     }
 }

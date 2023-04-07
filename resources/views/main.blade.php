@@ -110,7 +110,7 @@ https://templatemo.com/tm-559-zay-shop
 
                             {{-- display Vendors from User table --}}
                             @php
-                                $vendors = App\Models\User::where('role', 'vendor')->orderBy('name', 'ASC')->get();
+                                $vendors = App\Models\User::where('status','active')->where('role', 'vendor')->orderBy('name', 'ASC')->get();
                             @endphp
 
                             <div class="dropdown">

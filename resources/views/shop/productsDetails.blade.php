@@ -41,39 +41,48 @@
                         <!--Start Slides-->
                         <div class="carousel-inner product-links-wap" role="listbox">
 
+                            @foreach ($multiple_images as $p)
                             <!--First slide-->
                             <div class="carousel-item active">
                                 <div class="row">
                                     <div class="col-4">
                                         <a href="#">
-                                            <img class="card-img img-fluid" src="{{asset($products_details->product_photos)}}" alt="Product Image 1">
+                                            <img class="card-img img-fluid" src="{{asset($p->products_photos)}}" alt="Product Image 1">
                                         </a>
                                     </div>
-                                    <div class="col-4">
+                                   
+                                    {{-- <div class="col-4">
                                         <a href="#">
-                                            <img class="card-img img-fluid" src="assets/img/product_single_02.jpg" alt="Product Image 2">
+                                            <img class="card-img img-fluid" src="{{asset($p->products_photos)}}" alt="Product Image 2">
                                         </a>
-                                    </div>
-                                    <div class="col-4">
+                                    </div> --}}
+                                  
+                                   
+                                    {{-- <div class="col-4">
                                         <a href="#">
                                             <img class="card-img img-fluid" src="assets/img/product_single_03.jpg" alt="Product Image 3">
                                         </a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <!--/.First slide-->
+                            @endforeach
+                             
+                           
 
                             <!--Second slide-->
+                   
+{{-- 
                             <div class="carousel-item">
                                 <div class="row">
                                     <div class="col-4">
                                         <a href="#">
-                                            <img class="card-img img-fluid" src="assets/img/product_single_04.jpg" alt="Product Image 4">
+                                            <img class="card-img img-fluid" src="{{asset($p->products_photos)}}" alt="Product Image 4">
                                         </a>
                                     </div>
                                     <div class="col-4">
                                         <a href="#">
-                                            <img class="card-img img-fluid" src="assets/img/product_single_05.jpg" alt="Product Image 5">
+                                            <img class="card-img img-fluid" src="{{asset($p->products_photos)}}" alt="Product Image 5">
                                         </a>
                                     </div>
                                     <div class="col-4">
@@ -82,15 +91,18 @@
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
+                                
+                      
+                            
                             <!--/.Second slide-->
 
                             <!--Third slide-->
-                            <div class="carousel-item">
+                            {{-- <div class="carousel-item">
                                 <div class="row">
                                     <div class="col-4">
                                         <a href="#">
-                                            <img class="card-img img-fluid" src="assets/img/product_single_07.jpg" alt="Product Image 7">
+                                            <img class="card-img img-fluid" src="{{asset($p->products_photos)}}" alt="Product Image 7">
                                         </a>
                                     </div>
                                     <div class="col-4">
@@ -104,10 +116,12 @@
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
+
                             <!--/.Third slide-->
                         </div>
                         <!--End Slides-->
+                        
                     </div>
                     <!--End Carousel Wrapper-->
                     <!--Start Controls-->
@@ -253,6 +267,9 @@
                                 </div>
                             </div>
                         </form>
+
+                        <a href="{{ route('shop.products') }}"><button type="button" class="btn btn-info">Back</button>
+
 
                     </div>
                 </div>
